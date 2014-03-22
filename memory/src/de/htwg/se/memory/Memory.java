@@ -1,4 +1,4 @@
-package memory;
+package de.htwg.se.memory;
 
 public class Memory {
 
