@@ -7,11 +7,11 @@ public class Layout {
 	
 	private Field matrix[][];
 	
-	public Field getFeld(int row,int column) {
+	public Field getField(int row,int column) {
 		return matrix[row][column];
 	}
 	
-	public void setFeld(int row ,int column, Field field) {
+	public void setField(int row ,int column, Field field) {
 		this.matrix[row][column] = field;
 	}
 		
