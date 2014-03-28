@@ -14,15 +14,14 @@ public class UserTest  extends TestCase{
 			assertTrue(user.getName().getClass().equals(test.getClass()));
 		}
 		
-		
-		public void testsetName(){
+		public void testgetNickname(){
 			System.out.println(test.getClass());
-			assertTrue(user.getName().getClass().equals(test.getClass()));
+			assertTrue(user.getNickname().getClass().equals(test.getClass()));
 		}
 		
 		public void testgetType(){
-			System.out.println(test.getClass());
-			assertTrue(user.getName().getClass().equals(test.getClass()));
+			
+			assertTrue(user.getType().getClass().equals(test.getClass()));
 		}
 		
 		
