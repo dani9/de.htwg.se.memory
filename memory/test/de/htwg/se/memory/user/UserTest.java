@@ -10,12 +10,12 @@ public class UserTest  extends TestCase{
 		}
 		
 		public void testgetName(){
-			System.out.println(test.getClass());
+			
 			assertTrue(user.getName().getClass().equals(test.getClass()));
 		}
 		
 		public void testgetNickname(){
-			System.out.println(test.getClass());
+			
 			assertTrue(user.getNickname().getClass().equals(test.getClass()));
 		}
 		
