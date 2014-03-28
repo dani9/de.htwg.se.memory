@@ -1,33 +1,35 @@
 package de.htwg.se.memory.user;
 
-public abstract class User {
+public class User {
 	private String name;
 	private String nickname;
-	private Object type;
+	private String type;
 	private int points;
 
-	public User(String name, String nickname, Object type) {
+	public User(String name, String nickname, String type) {
 		this.name = name;
 		this.nickname = nickname;
 		this.type = type;
 	}
-		
-	
-	
-	public abstract Object getType();
 
-	public abstract void setType(Object type);
+	public String getName() {
+		return name;
+	}
 
-	public abstract int getPoints() ;
+	public String getNickname() {
+		return nickname;
+	}
 
-	public abstract void setPoints(int points);
+	public int getPoints() {
+		return points;
+	}
 
-	public abstract String getName() ;
+	public String getType() {
+		return type;
+	}
 
-	public abstract void setName(String name) ;
-
-	public abstract String getNickname() ;
-
-	public abstract void setNickname(String nickname);
+	public void setPoints(int points) {
+		this.points = points;
+	}
 
 }
