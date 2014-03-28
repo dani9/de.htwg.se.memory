@@ -11,37 +11,23 @@ public abstract class User {
 		this.nickname = nickname;
 		this.type = type;
 	}
+		
+	
+	
+	public abstract Object getType();
 
-	public Object getType() {
-		return type;
-	}
+	public abstract void setType(Object type);
 
-	public void setType(Object type) {
-		this.type = type;
-	}
+	public abstract int getPoints() ;
 
-	public int getPoints() {
-		return points;
-	}
+	public abstract void setPoints(int points);
 
-	public void setPoints(int points) {
-		this.points = points;
-	}
+	public abstract String getName() ;
 
-	public String getName() {
-		return name;
-	}
+	public abstract void setName(String name) ;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	public abstract String getNickname() ;
 
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
+	public abstract void setNickname(String nickname);
 
 }
