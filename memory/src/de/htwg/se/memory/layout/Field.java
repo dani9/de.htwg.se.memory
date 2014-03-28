@@ -4,10 +4,10 @@ public class Field {
 	String fieldId;
 	
 	public Field(String fieldId) {
-		// TODO Auto-generated constructor stub
+		setFieldId(fieldId);
 	}
 
-	public void setFieldId(String fieldId) {
+	private void setFieldId(String fieldId) {
 		this.fieldId = fieldId;
 	}
 	
