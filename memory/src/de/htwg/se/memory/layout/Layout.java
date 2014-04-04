@@ -17,21 +17,19 @@ public class Layout {
 	private void fillMatrix(){
 		LinkedList<Field> list=new LinkedList<Field>();
 			
-		for (int i = 0; i < ((matrix.length*matrix.length)/2); i++) {
+		for (int i = 0; i < ((getColumn()*getColumn())/2); i++) {
 			Field tmp= new Field(Integer.toString(i));
 			list.add(tmp);
 			list.add(tmp);
-			System.out.println(list.size());
 		}
 			
 			
-		for(int x =0; x < matrix.length; ++x){
-			  for(int y =0; y < matrix.length; ++y){
+		for(int x =0; x < getColumn(); ++x){
+			  for(int y =0; y < getColumn(); ++y){
 					matrix[x][y] =list.getFirst();
 					list.removeFirst();
 			  	}
 		  }
-		System.out.println(matrix.length);
 	}
 	
 	public Field getField(int row,int column) {
@@ -41,28 +39,32 @@ public class Layout {
 	public void mix(){
 				  int randX , randY;
 				  Field tmp;
-				  for(int x =0; x < matrix.length; ++x){
-					  for(int y =0; y < matrix.length; ++y){
+				  for(int x =0; x < getColumn(); ++x){
+					  for(int y =0; y < getColumn(); ++y){
 				  
-						  randX = (int)(Math.floor(Math.random() * matrix.length));
-						  randY = (int)(Math.floor(Math.random() * matrix.length));
+						  randX = (int)(Math.floor(Math.random() * getColumn()));
+						  randY = (int)(Math.floor(Math.random() * getColumn()));
 						  tmp = matrix[x][y]; 
 						  matrix[x][y] = matrix[randX][randY]; 
 						  matrix[randX][randY] =tmp;
 					  	}
 				  }
 		}
+
+	public int getColumn(){
+		return matrix.length;
+	}
 	
 	 @Override
 	public String toString() {
 		StringBuilder matrixString = new StringBuilder();
-		  for(int x =0; x < matrix.length; ++x){
-			  for(int y =0; y < matrix.length; ++y){
+		  for(int x =0; x < getColumn(); ++x){
+			  for(int y =0; y < getColumn(); ++y){
 		  
 				  	matrixString.append(matrix[x][y].getFieldId());
 				  	matrixString.append("\t");
 			  	}
-			  	if(x < matrix.length-1){
+			  	if(x < (getColumn()-1)){
 			  	matrixString.append("\n");
 			  	}
 		  	}

@@ -1,6 +1,6 @@
 
 package de.htwg.se.memory.layout;
-import junit.framework.TestCase;;
+import junit.framework.TestCase;
 public class LayoutTest extends TestCase{
 	
 	Layout layout;
@@ -8,19 +8,29 @@ public class LayoutTest extends TestCase{
 //	@Before
 	public void setUp() throws Exception{
 		layout = new Layout(6);
-		field = new Field("FF");
+	}
+
+	public void testGetColumn(){
+		
+		assertEquals(6, layout.getColumn());
 	}
 	
 //	@Test
-	public void testsetField(){
-//		layout.setField(4,4, field);
+	public void testGetField(){
+;
 		assertEquals(layout.getField(4, 4), layout.getField(4, 4));
-		layout.getField(4, 4).setFieldId("Haus");
-		assertEquals("Haus", layout.getField(4, 4).getFieldId());
-		System.out.print(layout + "\n"+ "\n");
-		layout.mix();
-		System.out.print(layout);
 	}
 
+	public void testMix(){
+		System.out.println(layout);
+		Layout tmp = layout;
+		layout.mix();
+		for(int x =0; x < layout.getColumn(); ++x){
+			  for(int y =0; y < layout.getColumn(); ++y){
+					assertNotSame(layout.toString(), tmp.toString());
+			  	}
+		  }
+		
+	}
 
 }
