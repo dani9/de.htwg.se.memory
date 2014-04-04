@@ -7,11 +7,16 @@ public class FieldTest extends TestCase{
 //	@Before
 	public void setUp() throws Exception{
 		field = new Field("Hallo");
+		field.setPathToPicture("test/dir");
 	}
 	
-	public void testsetField(){
+	public void testsetFieldId(){
 		
 		assertEquals("Hallo", field.getFieldId());
+		
+	}
+	public void testPathToPicture(){
+		assertEquals("test/dir" ,field.getPathToPicture());
 	}
 
 }
