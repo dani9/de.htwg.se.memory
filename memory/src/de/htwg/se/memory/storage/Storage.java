@@ -11,29 +11,29 @@ import java.io.ObjectOutputStream;
 public class Storage {
 
 	private String workingdir;
-	
 
 	public Storage(String workingdir) throws Exception {
 		File dir = new File(workingdir);
-		if (!dir.isDirectory()) {
-			System.out.println("no dir!");
+		if (!dir.isDirectory() ) {
+			
 			throw new Exception();
 		}
 		this.workingdir = workingdir;
-		
+
 	}
 
 	public boolean save(User u) {
 
 		try {
 
-			FileOutputStream out = new FileOutputStream(workingdir + u.getNickname() + ".sav");
+			FileOutputStream out = new FileOutputStream(workingdir
+					+ u.getNickname());
 			ObjectOutputStream put = new ObjectOutputStream(out);
 			put.writeObject(u);
 			put.close();
 
 		} catch (Exception ex) {
-//			ex.printStackTrace();
+			// ex.printStackTrace();
 			return false;
 		}
 
@@ -43,7 +43,8 @@ public class Storage {
 	public User load(User u) {
 		try {
 
-			FileInputStream in = new FileInputStream(workingdir + u.getNickname() + ".sav");
+			FileInputStream in = new FileInputStream(workingdir
+					+ u.getNickname());
 			ObjectInputStream user_object = new ObjectInputStream(in);
 
 			Object obj = user_object.readObject();
@@ -54,7 +55,7 @@ public class Storage {
 
 		} catch (Exception ex) {
 
-//			ex.printStackTrace();
+			// ex.printStackTrace();
 
 			return null;
 
