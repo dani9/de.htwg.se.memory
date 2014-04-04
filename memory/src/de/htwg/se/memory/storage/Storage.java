@@ -9,6 +9,9 @@ import java.io.ObjectOutputStream;
 
 public class Storage {
 
+	public Storage() {
+		// TODO Auto-generated constructor stub
+	}
 	public static boolean saveUser(User u, String filepath) {
 
 		try {

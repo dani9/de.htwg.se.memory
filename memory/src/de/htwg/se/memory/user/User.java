@@ -2,6 +2,9 @@ package de.htwg.se.memory.user;
 import java.io.Serializable;
 
 public class User implements Serializable{
+	
+	private static final long serialVersionUID = 7556473399662776644L;
+	
 	private String name;
 	private String nickname;
 	private String type;
