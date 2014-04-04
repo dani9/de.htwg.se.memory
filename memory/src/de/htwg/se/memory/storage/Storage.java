@@ -2,6 +2,7 @@ package de.htwg.se.memory.storage;
 
 import de.htwg.se.memory.user.User;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -9,31 +10,40 @@ import java.io.ObjectOutputStream;
 
 public class Storage {
 
-	public Storage() {
-		// TODO Auto-generated constructor stub
+	private String workingdir;
+	
+
+	public Storage(String workingdir) throws Exception {
+		File dir = new File(workingdir);
+		if (!dir.isDirectory()) {
+			System.out.println("no dir!");
+			throw new Exception();
+		}
+		this.workingdir = workingdir;
+		
 	}
-	public static boolean saveUser(User u, String filepath) {
+
+	public boolean save(User u) {
 
 		try {
 
-			FileOutputStream fout = new FileOutputStream(filepath);
-			ObjectOutputStream oos = new ObjectOutputStream(fout);
-			oos.writeObject(u);
-			oos.close();
+			FileOutputStream out = new FileOutputStream(workingdir + u.getNickname() + ".sav");
+			ObjectOutputStream put = new ObjectOutputStream(out);
+			put.writeObject(u);
+			put.close();
 
 		} catch (Exception ex) {
-			ex.printStackTrace();
+//			ex.printStackTrace();
 			return false;
 		}
 
 		return true;
 	}
 
-	public static User loadUser(String filepath) {
+	public User load(User u) {
 		try {
 
-			FileInputStream in = new FileInputStream(filepath);
-
+			FileInputStream in = new FileInputStream(workingdir + u.getNickname() + ".sav");
 			ObjectInputStream user_object = new ObjectInputStream(in);
 
 			Object obj = user_object.readObject();
@@ -44,7 +54,7 @@ public class Storage {
 
 		} catch (Exception ex) {
 
-			ex.printStackTrace();
+//			ex.printStackTrace();
 
 			return null;
 
