@@ -13,9 +13,10 @@ public class Storage {
 	private String workingdir;
 
 	public Storage(String workingdir) throws Exception {
+
 		File dir = new File(workingdir);
-		if (!dir.isDirectory() ) {
-			
+		if (!dir.isDirectory()) {
+
 			throw new Exception();
 		}
 		this.workingdir = workingdir;
