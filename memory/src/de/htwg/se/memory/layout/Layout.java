@@ -3,8 +3,14 @@ package de.htwg.se.memory.layout;
 import java.util.LinkedList;
 
 public class Layout {
-	public Layout(int column) {
-		creatMatrix(column);
+	public Layout(int column) throws Exception {
+		if(column % 2 == 0){
+			creatMatrix(column);
+		}
+		else{
+			throw(new IllegalArgumentException("only even numbers"));
+		}
+		
 	}
 	private Field matrix[][];
 	

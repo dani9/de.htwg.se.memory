@@ -1,26 +1,43 @@
 
 package de.htwg.se.memory.layout;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import junit.framework.TestCase;
 public class LayoutTest extends TestCase{
 	
-	Layout layout;
+	Layout layout,layout1;
 	Field field;
-//	@Before
+	@Before
 	public void setUp() throws Exception{
-		layout = new Layout(6);
-	}
+		layout = new Layout(8);
+		;
 
-	public void testGetColumn(){
-		
-		assertEquals(6, layout.getColumn());
 	}
 	
-//	@Test
+	@Test
+	public void testIlligalCollum() throws Exception{
+		try {
+			layout1 = new Layout(7);
+		} catch (IllegalArgumentException e) {
+			// TODO: handle exception
+		}
+	}
+	
+	@Test
+	public void testGetColumn(){
+		
+		assertEquals(8, layout.getColumn());
+	}
+	
+	@Test
 	public void testGetField(){
 ;
 		assertEquals(layout.getField(4, 4), layout.getField(4, 4));
 	}
-
+	
+	@Test
 	public void testMix(){
 		System.out.println(layout);
 		Layout tmp = layout;
