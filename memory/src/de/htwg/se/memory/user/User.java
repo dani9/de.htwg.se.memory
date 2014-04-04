@@ -1,6 +1,7 @@
 package de.htwg.se.memory.user;
+import java.io.Serializable;
 
-public class User {
+public class User implements Serializable{
 	private String name;
 	private String nickname;
 	private String type;
@@ -31,5 +32,6 @@ public class User {
 	public void setPoints(int points) {
 		this.points = points;
 	}
+
 
 }
