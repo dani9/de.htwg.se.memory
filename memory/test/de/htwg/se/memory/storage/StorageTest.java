@@ -26,7 +26,7 @@ public class StorageTest extends TestCase {
 		
 		//fails
 		User testuser = new User("", "", "");
-		box.save(testuser);
+		assertFalse(box.save(testuser));
 
 		assertTrue(box.save(user));
 
@@ -40,12 +40,12 @@ public class StorageTest extends TestCase {
 
         //fails
 		User user2 = new User("Test", "tt", "test");
-		user2 = box.load(user2);
+		assertNull(box.load(user2));
 
 		assertTrue(user.getName().equals(user1.getName()));
 		assertTrue(user.getNickname().equals(user1.getNickname()));
 		assertTrue(user.getType().equals(user1.getType()));
-		assertTrue(user1.getPoints() == user.getPoints());
+		assertEquals(user.getPoints(), user1.getPoints());
 
 	}
 
