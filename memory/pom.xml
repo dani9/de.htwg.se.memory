@@ -12,5 +12,14 @@
 		  <version>4.11</version>
 		  <scope>test</scope>
 	  </dependency>
-</dependencies>
+  </dependencies>
+
+<build>
+	<sourceDirectory>src</sourceDirectory>
+	<scriptSourceDirectory>src</scriptSourceDirectory>
+	<testSourceDirectory>test</testSourceDirectory>
+	
+	
+</build>
+
 </project>
