@@ -15,9 +15,21 @@
   </dependencies>
 
 <build>
-	<sourceDirectory>src</sourceDirectory>
-	<scriptSourceDirectory>src</scriptSourceDirectory>
-	<testSourceDirectory>test</testSourceDirectory>
+	<sourceDirectory>/src</sourceDirectory>
+	<scriptSourceDirectory>/src</scriptSourceDirectory>
+	<testSourceDirectory>/test</testSourceDirectory>
+	
+	<resources>
+      <resource>
+        <directory>/src</directory>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>/test</directory>
+      </testResource>
+    </testResources>
+    <directory>/target</directory>
 	
 	
 </build>
