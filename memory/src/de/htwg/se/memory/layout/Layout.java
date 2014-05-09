@@ -3,7 +3,7 @@ package de.htwg.se.memory.layout;
 import java.util.LinkedList;
 
 public class Layout {
-	private final Field matrix[][];
+	private Field matrix[][];
 	
 	public Layout(int column) throws Exception {
 		if(column % 2 == 0){
