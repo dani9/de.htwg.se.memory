@@ -2,15 +2,14 @@ package de.htwg.se.memory.storage;
 
 import de.htwg.se.memory.user.User;
 import junit.framework.TestCase;
-import org.junit.Before;
 
 public class StorageTest extends TestCase {
 
 	String filepath = "/home/dorn/git/";
 	User user;
-	Storage box;
+	Storage box, box1;
 
-	@Before
+	//@Before
 	public void setUp() throws Exception {
 		user = new User("Daniel", "dani", "local");
 		user.setPoints(10);
@@ -21,7 +20,7 @@ public class StorageTest extends TestCase {
 	public void testsaveUser() {
 
 		try {
-			Storage box1 = new Storage(filepath + "dani");
+			box1 = new Storage(filepath + "dani");
 		} catch (Exception e) {
 		}
 
