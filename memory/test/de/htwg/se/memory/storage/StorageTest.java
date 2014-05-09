@@ -1,22 +1,24 @@
 package de.htwg.se.memory.storage;
 
+import org.junit.Before;
+import org.junit.Test;
+
 import de.htwg.se.memory.user.User;
 import junit.framework.TestCase;
 
 public class StorageTest extends TestCase {
-
-	String filepath = "/home/dorn/git/";
+	String userdir = System.getProperty("user.dir")+System.getProperty("file.separator");
+	String filepath = userdir ;
 	User user;
 	Storage box, box1;
 
-	//@Before
+	@Before
 	public void setUp() throws Exception {
 		user = new User("Daniel", "dani", "local");
 		user.setPoints(10);
 		box = new Storage(filepath);
-
 	}
-
+	@Test
 	public void testsaveUser() {
 
 		try {
@@ -31,7 +33,7 @@ public class StorageTest extends TestCase {
 		assertTrue(box.save(user));
 
 	}
-
+	@Test
 	public void testloadUser() {
 
 		assertTrue(box.save(user));

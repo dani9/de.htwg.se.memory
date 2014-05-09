@@ -1,7 +1,6 @@
 
 package de.htwg.se.memory.layout;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import junit.framework.TestCase;
@@ -39,7 +38,6 @@ public class LayoutTest extends TestCase{
 	
 	@Test
 	public void testMix(){
-		System.out.println(layout);
 		Layout tmp = layout;
 		layout.mix();
 		for(int x =0; x < layout.getColumn(); ++x){
