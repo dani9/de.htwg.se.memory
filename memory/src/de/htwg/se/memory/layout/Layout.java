@@ -37,11 +37,11 @@ public class Layout {
 		  }
 	}
 	
-	public Field getField(int row,int column) {
+	public final Field getField(int row,int column) {
 		return matrix[row][column];
 	}
 	
-	public void mix(){
+	public final void mix(){
 				  int randX , randY;
 				  Field tmp;
 				  for(int x =0; x < getColumn(); ++x){
@@ -56,12 +56,12 @@ public class Layout {
 				  }
 		}
 
-	public int getColumn(){
+	public final int getColumn(){
 		return matrix.length;
 	}
 	
 	 @Override
-	public String toString() {
+	public final String toString() {
 		StringBuilder matrixString = new StringBuilder();
 		  for(int x =0; x < getColumn(); ++x){
 			  for(int y =0; y < getColumn(); ++y){
