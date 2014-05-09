@@ -5,7 +5,7 @@ public class Field {
 	private String pathToPicture;
 	
 	public Field(String fieldId) {
-		setFieldId(fieldId);
+		this.fieldId = fieldId;
 	}
 
 	public void setFieldId(String fieldId) {

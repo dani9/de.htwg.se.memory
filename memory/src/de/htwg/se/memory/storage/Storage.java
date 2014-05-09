@@ -5,6 +5,7 @@ import de.htwg.se.memory.user.User;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -17,7 +18,7 @@ public class Storage {
 		File dir = new File(workingdir);
 		if (!dir.isDirectory()) {
 
-			throw new Exception();
+			throw new IOException();
 		}
 		this.workingdir = workingdir;
 
@@ -34,7 +35,6 @@ public class Storage {
 			put.close();
 
 		} catch (Exception ex) {
-			// ex.printStackTrace();
 			return false;
 		}
 
@@ -46,17 +46,15 @@ public class Storage {
 
 			FileInputStream in = new FileInputStream(workingdir
 					+ u.getNickname());
-			ObjectInputStream user_object = new ObjectInputStream(in);
+			ObjectInputStream userObject = new ObjectInputStream(in);
 
-			Object obj = user_object.readObject();
+			Object obj = userObject.readObject();
 
-			user_object.close();
+			userObject.close();
 
 			return (User) obj;
 
 		} catch (Exception ex) {
-
-			// ex.printStackTrace();
 
 			return null;
 

@@ -1,10 +1,10 @@
 package de.htwg.se.memory;
 
 
-import de.htwg.se.memory.*;
 
 
-public class Memory {
+
+class Memory {
 
 	/**
 	 * @param args

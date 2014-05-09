@@ -3,22 +3,24 @@ package de.htwg.se.memory.layout;
 import java.util.LinkedList;
 
 public class Layout {
+	
+	private final Field matrix[][];
+	
 	public Layout(int column) throws Exception {
 		if(column % 2 == 0){
-			creatMatrix(column);
+			matrix = new Field[column][column];
+			this.fillMatrix();
+			this.mix();
 		}
 		else{
 			throw(new IllegalArgumentException("only even numbers"));
 		}
 		
 	}
-	private Field matrix[][];
 	
 	
-	public void creatMatrix(int column){
-		matrix = new Field[column][column];
-		fillMatrix();
-		}
+	
+
 		
 	private void fillMatrix(){
 		LinkedList<Field> list=new LinkedList<Field>();
