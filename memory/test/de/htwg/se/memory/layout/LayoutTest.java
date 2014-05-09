@@ -11,7 +11,6 @@ public class LayoutTest extends TestCase{
 	@Before
 	public void setUp() throws Exception{
 		layout = new Layout(8);
-		;
 
 	}
 	
@@ -20,7 +19,7 @@ public class LayoutTest extends TestCase{
 		try {
 			layout1 = new Layout(7);
 		} catch (IllegalArgumentException e) {
-			// TODO: handle exception
+			// TODO: haimport org.junit.Before;ndle exception
 		}
 	}
 	

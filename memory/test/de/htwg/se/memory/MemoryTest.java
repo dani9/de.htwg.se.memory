@@ -1,13 +1,21 @@
 package de.htwg.se.memory;
 
-public class MemoryTest {
+import org.junit.Before;
+import org.junit.Test;
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+import junit.framework.TestCase;
 
+public class MemoryTest extends TestCase {
+
+	Memory memory;
+	@Before
+	public void setUp() {
+
+		memory = new de.htwg.se.memory.Memory();
 	}
-
+	
+	@Test
+	public void testSetUp(){
+		assertEquals(memory, memory);
+	}
 }

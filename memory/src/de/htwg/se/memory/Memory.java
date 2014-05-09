@@ -4,13 +4,7 @@ package de.htwg.se.memory;
 
 
 
-class Memory {
+final class Memory {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		
-	}
 
 }

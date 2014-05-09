@@ -19,7 +19,7 @@ public class Layout {
 
 
 		
-	private void fillMatrix(){
+	private final void fillMatrix(){
 		LinkedList<Field> list=new LinkedList<Field>();
 			
 		for (int i = 0; i < ((getColumn()*getColumn())/2); i++) {
