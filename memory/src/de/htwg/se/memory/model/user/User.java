@@ -1,4 +1,4 @@
-package de.htwg.se.memory.user;
+package de.htwg.se.memory.model.user;
 import java.io.Serializable;
 
 public class User implements Serializable{

@@ -1,4 +1,4 @@
-package de.htwg.se.memory.observer;
+package de.htwg.se.memory.util.observer;
 
 
 

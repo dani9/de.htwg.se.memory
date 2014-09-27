@@ -1,7 +1,8 @@
-package de.htwg.se.memory.layout;
+package de.htwg.se.memory.model.playingField;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.se.memory.model.playingField.Field;
 import junit.framework.TestCase;
 
 public class FieldTest extends TestCase{

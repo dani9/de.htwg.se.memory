@@ -1,9 +1,10 @@
-package de.htwg.se.memory.storage;
+package de.htwg.se.memory.model.storage;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.se.memory.user.User;
+import de.htwg.se.memory.model.storage.Storage;
+import de.htwg.se.memory.model.user.User;
 import junit.framework.TestCase;
 
 public class StorageTest extends TestCase {

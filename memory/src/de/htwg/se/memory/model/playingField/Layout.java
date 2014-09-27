@@ -1,4 +1,4 @@
-package de.htwg.se.memory.layout;
+package de.htwg.se.memory.model.playingField;
 
 import java.util.LinkedList;
 

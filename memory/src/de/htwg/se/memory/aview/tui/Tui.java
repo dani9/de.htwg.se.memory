@@ -1,6 +1,6 @@
-package de.htwg.se.memory.ui.tui;
+package de.htwg.se.memory.aview.tui;
 
-import de.htwg.se.memory.observer.IObserver;
+import de.htwg.se.memory.util.observer.IObserver;
 
 public class Tui implements IObserver{
 

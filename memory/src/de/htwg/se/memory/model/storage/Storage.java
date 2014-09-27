@@ -1,6 +1,6 @@
-package de.htwg.se.memory.storage;
+package de.htwg.se.memory.model.storage;
 
-import de.htwg.se.memory.user.User;
+import de.htwg.se.memory.model.user.User;
 
 import java.io.File;
 import java.io.FileInputStream;

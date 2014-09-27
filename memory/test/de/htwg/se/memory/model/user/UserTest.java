@@ -1,7 +1,8 @@
-package de.htwg.se.memory.user;
+package de.htwg.se.memory.model.user;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.se.memory.model.user.User;
 import junit.framework.TestCase;
 public class UserTest  extends TestCase{
 
