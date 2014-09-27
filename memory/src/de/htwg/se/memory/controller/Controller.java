@@ -1,5 +1,10 @@
 package de.htwg.se.memory.controller;
 
-public class Controller {
+import de.htwg.se.memory.observer.Observable;
 
+public class Controller extends Observable{
+
+	
+	
+	
 }
