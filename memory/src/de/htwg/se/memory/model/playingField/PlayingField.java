@@ -2,18 +2,18 @@ package de.htwg.se.memory.model.playingField;
 
 import java.util.LinkedList;
 
-public class Layout {
+public class PlayingField {
 	private Field matrix[][];
 	
-	public Layout(int column) throws Exception {
+	public PlayingField(int column){
 		if(column % 2 == 0){
 			matrix = new Field[column][column];
-			fillMatrix();
+			
 		}
 		else{
-			throw(new IllegalArgumentException("only even numbers"));
+			matrix = new Field[column+1][column+1];
 		}
-		
+		fillMatrix();
 		
 	}
 
@@ -24,8 +24,9 @@ public class Layout {
 			
 		for (int i = 0; i < ((getColumn()*getColumn())/2); i++) {
 			Field tmp= new Field(Integer.toString(i));
+			Field tmp2= new Field(Integer.toString(i));
 			list.add(tmp);
-			list.add(tmp);
+			list.add(tmp2);
 		}
 			
 			
@@ -75,4 +76,14 @@ public class Layout {
 		  	}
 		  return matrixString.toString();
 	 	}
+	 
+	 public void hideAll(){
+		 for(int x =0; x < getColumn(); ++x){
+			  for(int y =0; y < getColumn(); ++y){
+		  
+				  getField(x, y).setHidden();
+			  	}
+		 }
+	 
+	 }
 }

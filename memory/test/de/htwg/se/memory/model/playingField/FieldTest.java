@@ -1,4 +1,6 @@
 package de.htwg.se.memory.model.playingField;
+import static org.junit.Assert.assertNotEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,13 +9,14 @@ import junit.framework.TestCase;
 
 public class FieldTest extends TestCase{
 	
-	Field field, field1;
+	Field field, field1, field2;
 	@Before
 	public void setUp() throws Exception{
 		field = new Field("Hallo");
 		field.setPathToPicture("test/dir");
 		field1 = new Field("12");
 		field1.setFieldId("12df");
+		field2 = new Field("Hallo");
 	}
 
 	@Test
@@ -35,4 +38,18 @@ public class FieldTest extends TestCase{
 		assertEquals("test/dir" ,field.getPathToPicture());
 	}
 
+	@Test
+	public void testEquals(){
+		assertEquals(field.compareTo(field2), field.compareTo(field2));
+	}
+	
+	@Test
+	public void testVisibleHidden(){
+		field.setVisble();
+		String stringVisible = field.toString();
+				
+		field.setHidden();
+		String stringHidden= field.toString();
+		assertNotEquals(stringHidden, stringVisible);
+	}
 }
