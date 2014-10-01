@@ -11,7 +11,7 @@ public class FieldTest extends TestCase{
 	
 	Field field, field1, field2;
 	@Before
-	public void setUp() throws Exception{
+	public void setUp(){
 		field = new Field("Hallo");
 		field.setPathToPicture("test/dir");
 		field1 = new Field("12");
