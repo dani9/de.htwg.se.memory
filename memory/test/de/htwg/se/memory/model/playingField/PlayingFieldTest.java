@@ -39,12 +39,23 @@ public class PlayingFieldTest extends TestCase{
 	public void testMix(){
 		PlayingField tmp = layout;
 		layout.mix();
+
+		assertNotSame(layout.toString(), tmp.toString());
+			 
+		  
+		
+	}
+	
+	@Test
+	public void testHideAll(){
+		layout.hideAll();
 		for(int x =0; x < layout.getColumn(); ++x){
 			  for(int y =0; y < layout.getColumn(); ++y){
-					assertNotSame(layout.toString(), tmp.toString());
+					assertFalse(layout.getField(x, y).isVisible());
 			  	}
 		  }
 		
 	}
+	
 
 }

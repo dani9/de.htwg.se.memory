@@ -52,4 +52,22 @@ public class FieldTest extends TestCase{
 		String stringHidden= field.toString();
 		assertNotEquals(stringHidden, stringVisible);
 	}
+	
+	@Test
+	public void testVisible(){
+		field.setHidden();
+		assertFalse(field.isVisible());
+		field.setVisble();
+		assertTrue(field.isVisible());
+	}
+	
+	@Test
+	public void testGuessed(){
+		field.setGuessed(false);
+		assertFalse(field.isGuessed());
+		
+		field.setGuessed(true);
+		assertTrue(field.isGuessed());
+	}
+	
 }

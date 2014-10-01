@@ -6,8 +6,21 @@ public class Field implements Comparable<Field>{
 	private static String hiddenText = "$$";
 	private String fieldId;
 	private String pathToPicture;
-	boolean isVisible = false;
+	private boolean isVisible = false;
+	private boolean isGuessed = false;
 	
+
+
+	
+	
+	public boolean isGuessed() {
+		return isGuessed;
+	}
+
+	public void setGuessed(boolean isGuessed) {
+		this.isGuessed = isGuessed;
+	}
+
 	public Field(String fieldId) {
 		this.fieldId = fieldId;
 	}
@@ -36,6 +49,10 @@ public class Field implements Comparable<Field>{
 		isVisible = false;
 	}
 	
+	public boolean isVisible() {
+		return isVisible;
+	}
+	
 	@Override
 	public String toString(){
 		if(isVisible){
@@ -45,8 +62,6 @@ public class Field implements Comparable<Field>{
 			return hiddenText;
 		}
 	}
-
-
 
 	@Override
 	public int compareTo(Field o) {
