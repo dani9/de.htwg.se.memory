@@ -14,5 +14,10 @@ public class AiTest {
 		ai = new Ai(controller, "hard");
 	}
 	
+	@Test
+	public void testSetDifficult(){
+		
+		
+	}
 	
 }

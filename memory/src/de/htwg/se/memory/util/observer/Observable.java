@@ -7,7 +7,7 @@ import java.util.HashSet;
 
 public class Observable {
 
-	HashSet<IObserver> observers = new HashSet<>();
+	HashSet<IObserver> observers = new HashSet<IObserver>();
 	
 	public void addObserver(IObserver observer) {
 		this.observers.add(observer);
