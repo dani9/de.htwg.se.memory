@@ -39,22 +39,20 @@ public class Ai {
 	
 	
 	public void setDifficultLevel(String difficult){ 
-		switch (difficult) {
-		case "easy":
+		if(difficult == "easy"){
 			maxListSize = 1;
-			break;
-		
-		case "medium":
-			maxListSize = 4;
-			break;
-			
-		case "hard":
-			maxListSize = 8;
-			break;
-
-		default:
-			break;
 		}
+			
+		
+		if(difficult == "easy"){
+			maxListSize = 4;
+		}
+		
+		if(difficult == "easy"){
+			maxListSize = 8;
+		}
+
+		
 	}
 	
 	public void remember(Field field ,int x, int y){
