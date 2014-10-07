@@ -17,7 +17,7 @@ public class Controller extends Observable{
 	public void startGame(int fieldSize, boolean withAi){
 		
 		playingField = new PlayingField(fieldSize);
-		ai = new Ai(this, "Hard");
+		ai = new Ai(this, 3);
 	}
 	
 	public int getPlayFieldSize(){

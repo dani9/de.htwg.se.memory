@@ -25,12 +25,12 @@ class FieldWithCordinate{
 
 public class Ai {
 
-	LinkedList<FieldWithCordinate> remeberedFields = null;
-	Controller controller;
-	int maxListSize = 0;
+	private LinkedList<FieldWithCordinate> remeberedFields = null;
+	private Controller controller;
+	private int difficult;
 	
 	
-	public Ai(Controller controller, String difficult) {
+	public Ai(Controller controller, int difficult) {
 		// TODO Auto-generated constructor stub
 		this.controller = controller;
 		setDifficultLevel(difficult);
@@ -38,28 +38,21 @@ public class Ai {
 	}
 	
 	
-	public void setDifficultLevel(String difficult){ 
-		if(difficult == "easy"){
-			maxListSize = 1;
-		}
-			
+	public final void setDifficultLevel(int difficult){ 
+		this.difficult = difficult;
+	}
+	
+	public int getDifficultLevel(){
 		
-		if(difficult == "easy"){
-			maxListSize = 4;
-		}
-		
-		if(difficult == "easy"){
-			maxListSize = 8;
-		}
-
-		
+		return this.difficult;
 	}
 	
 	public void remember(Field field ,int x, int y){
 
 		
 		for (FieldWithCordinate tmp : remeberedFields) {
-			if(field.compareTo(tmp.field) == 0 && x == tmp.x && y == tmp.x){
+			
+			if(field.compareTo(tmp.field) == 0 && x == tmp.x && y == tmp.y){
 				//wird gelöscht, da es anschließend wieder neu einegfügt wird
 				remeberedFields.remove(tmp);
 				
@@ -70,7 +63,16 @@ public class Ai {
 		FieldWithCordinate tmp = new FieldWithCordinate(field, x, y);
 		remeberedFields.add(tmp);
 
+		int maxListSize = 4;
+		if(difficult == 1){
+			maxListSize = 4;
+		}else if(difficult == 2){
+			maxListSize = 6;
+		}else{
+			maxListSize = 8;
+		}
 		
+		System.out.println(maxListSize);
 		//Liste auf größe anpassen
 		while (remeberedFields.size() > maxListSize) {
 			remeberedFields.poll();	
@@ -78,6 +80,8 @@ public class Ai {
 		
 		
 	}
+	
+
 	
 	public int[] getChoice(){
 		//erstes feld wird geraten
