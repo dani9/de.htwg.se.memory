@@ -13,7 +13,7 @@ public class GUI extends JFrame {
 		this.setTitle("GUI MEMORY LAYOUT");
 		this.setName("main");
 		
-		Grid grid = new Grid(5, 5,100);
+		Grid grid = new Grid(3, 3,150);
 		
 		this.setJMenuBar(new MenuBar());
 		this.add(grid);
