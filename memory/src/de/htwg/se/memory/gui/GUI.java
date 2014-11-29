@@ -4,6 +4,8 @@ import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
 
+import de.htwg.se.memory.util.IconContainer;
+
 public class GUI extends JFrame {
 	
 	private static final long serialVersionUID = -4305625036085082377L;
@@ -12,8 +14,13 @@ public class GUI extends JFrame {
 		
 		this.setTitle("GUI MEMORY LAYOUT");
 		this.setName("main");
-		this.setJMenuBar(new MenuBar());
 		
+		Grid grid = new Grid(5, 5,100);
+		
+		this.setJMenuBar(new MenuBar());
+		this.add(grid);
+		
+		grid.setIcon("BTN0", "PIC"+(IconContainer.ACE+IconContainer.SPADE));
 		
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
