@@ -52,7 +52,7 @@ public class IconContainer implements Serializable {
 
 		images = new HashMap<String, ImageIcon>();
 
-		for (int i = 0; i < cardcolor; i++) {
+		for (int i = 1; i < cardcolor+1; i++) {
 			for (int j = 0; j < cardvalue; j++) {
 				ImageIcon img = new ImageIcon(PICTUREPATH
 						+ new Integer((i * 100) + j) + ".png");
@@ -80,6 +80,7 @@ public class IconContainer implements Serializable {
 					+ "icons.if");
 			if (instance == null) {
 				instance = new IconContainer();
+				System.out.println(instance.images.keySet());
 				storage.saveSerializable(instance, PICTUREPATH + "icons.if");
 			}
 		}

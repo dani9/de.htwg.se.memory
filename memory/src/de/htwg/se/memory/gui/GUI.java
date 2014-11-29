@@ -1,7 +1,5 @@
 package de.htwg.se.memory.gui;
 
-import java.awt.HeadlessException;
-
 import javax.swing.JFrame;
 
 import de.htwg.se.memory.util.IconContainer;

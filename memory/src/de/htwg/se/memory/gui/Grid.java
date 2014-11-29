@@ -96,7 +96,7 @@ public class Grid extends JPanel {
 
 			IconContainer icons = IconContainer.getInstance();
 
-			((JButton) this.cards.get(btnID)).setIcon(icons.getIcon(picID, 90,
+			((JButton) this.cards.get(btnID)).setIcon(icons.getIcon(picID, this.size,
 					this.size));
 		}
 
