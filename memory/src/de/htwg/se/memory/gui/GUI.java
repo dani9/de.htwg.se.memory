@@ -15,7 +15,9 @@ public class GUI extends JFrame {
 		this.setJMenuBar(new MenuBar());
 		
 		
-		this.setResizable(true);
+		this.setResizable(false);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.validate();
 		this.setVisible(true);
 		this.pack();
 		
