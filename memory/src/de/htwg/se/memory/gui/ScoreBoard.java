@@ -1,8 +1,10 @@
 package de.htwg.se.memory.gui;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JPanel;
 
-import de.htwg.se.memory.util.Storage;
 
 public class ScoreBoard extends JPanel{
 
@@ -10,10 +12,13 @@ public class ScoreBoard extends JPanel{
 	
 	public ScoreBoard() {
 		
-		Storage storage = new Storage();
-		
-		
+		this.setLayout(new BorderLayout());
+		this.setBackground(Color.WHITE);
+		this.add(new ScoreTable(),BorderLayout.CENTER);
 	
+	}
+	public void refresh(){
+		
 	}
 	
 
