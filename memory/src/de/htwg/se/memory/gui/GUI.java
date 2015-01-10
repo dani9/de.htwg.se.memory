@@ -20,8 +20,15 @@ public class GUI extends JFrame {
 		this.setTitle("GUI MEMORY LAYOUT");
 		this.setName("main");
 		
+		
+		
 		mainPanel = new CardLayout();
 		mainCardPanel = new JPanel(mainPanel);
+		
+		/*TEST*/
+		mainCardPanel.add(new GameFieldPanel(9, 900), "test");
+		mainPanel.show(mainCardPanel, "test");
+		
 		
 		this.add(mainCardPanel);
 		
