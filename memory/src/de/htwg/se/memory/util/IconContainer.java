@@ -153,11 +153,11 @@ public class IconContainer implements Serializable {
 				e.printStackTrace();
 			}
 			instance = (IconContainer) storage.loadSerializable(PICTUREPATH
-					+ "icons.if");
+					+ "icons.if","pic");
 			if (instance == null) {
 				instance = new IconContainer();
 				System.out.println(instance.images.keySet());
-				storage.saveSerializable(instance, PICTUREPATH + "icons.if");
+				storage.saveSerializable(instance, PICTUREPATH + "icons.if","pic");
 			}
 		}
 		return instance;

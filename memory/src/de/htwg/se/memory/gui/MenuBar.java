@@ -18,7 +18,7 @@ public class MenuBar extends JMenuBar {
 		IconContainer icons = IconContainer.getInstance();
 
 		JMenu menuGame = new JMenu("Game");
-		JMenuItem itemStart = new JMenuItem("play", icons.getIcon("PIC" + IconContainer.RIGHT));
+		JMenuItem itemStart = new JMenuItem("play", icons.getIcon("PIC" + IconContainer.USER));
 		JMenuItem itemExit = new JMenuItem("exit", icons.getIcon("PIC" + IconContainer.EXIT));
 
 		menuGame.add(itemStart);
@@ -29,9 +29,9 @@ public class MenuBar extends JMenuBar {
 		JMenu menuSettings = new JMenu("Settings");
 		radioGroup = new ButtonGroup();
 
+		addRadioOptionToMenu(menuSettings, 4);
 		addRadioOptionToMenu(menuSettings, 8);
 		addRadioOptionToMenu(menuSettings, 16);
-		addRadioOptionToMenu(menuSettings, 32);
 		
 
 		this.add(menuGame);

@@ -26,7 +26,7 @@ public class GUI extends JFrame {
 		mainCardPanel = new JPanel(mainPanel);
 		
 		/*TEST*/
-		mainCardPanel.add(new GameFieldPanel(9, 900), "test");
+		mainCardPanel.add(new GameFieldPanel(1, 900), "test");
 		mainPanel.show(mainCardPanel, "test");
 		
 		
