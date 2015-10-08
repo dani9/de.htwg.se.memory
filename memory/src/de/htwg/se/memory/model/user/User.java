@@ -14,6 +14,7 @@ public class User implements Serializable{
 		this.name = name;
 		this.nickname = nickname;
 		this.type = type;
+		this.points = 0;
 	}
 
 	public String getName() {

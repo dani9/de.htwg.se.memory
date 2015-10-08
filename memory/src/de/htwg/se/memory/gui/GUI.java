@@ -1,12 +1,15 @@
 package de.htwg.se.memory.gui;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import de.htwg.se.memory.controller.Controller;
+import de.htwg.se.memory.model.user.User;
 
 public class GUI extends JFrame {
 	
@@ -22,12 +25,16 @@ public class GUI extends JFrame {
 		
 		
 		
-		this.setTitle("GUI MEMORY LAYOUT");
+		this.setTitle("GUI MEM LAYOUT");
 		
-		controller.startGame(8, false);
+		controller.startGame(10, false);
 		
 		this.setName("main");
 		
+		
+		JPanel frontPanel = new JPanel();
+		frontPanel.setLayout(new BorderLayout());
+		frontPanel.setBackground(Color.white);
 		
 		
 		mainPanel = new CardLayout();
@@ -36,10 +43,20 @@ public class GUI extends JFrame {
 		/*TEST*/
 		mainCardPanel.add(new GameFieldPanel(controller,controller.getPlayFieldSize()*controller.getPlayFieldSize(), 900), "");
 		mainCardPanel.add(new ScoreBoard(), "test");
+		
+		User user_0 = new User("test0", "TestUser_0", "n");
+		User user_1 = new User("test1", "TestUSer_1", "n");
+		PanelInfo infopanel = new PanelInfo(user_0, user_1);
+		
+		
+		
+		
+		frontPanel.add(mainCardPanel);
+		frontPanel.add(infopanel, BorderLayout.SOUTH);
 		//mainPanel.show(mainCardPanel, "test");
 		
 		
-		this.add(mainCardPanel);
+		this.add(frontPanel);
 		
 		this.setJMenuBar(new MenuBar());
 		this.setResizable(false);
