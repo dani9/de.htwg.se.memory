@@ -14,6 +14,7 @@ public class PlayingField {
 			matrix = new Field[column+1][column+1];
 		}
 		fillMatrix();
+		mix();
 		
 	}
 

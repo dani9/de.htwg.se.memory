@@ -4,6 +4,8 @@ package de.htwg.se.memory.gui;
 
 import javax.swing.JPanel;
 
+import de.htwg.se.memory.controller.Controller;
+
 public class GameFieldPanel extends JPanel{
 
 
@@ -11,10 +13,10 @@ public class GameFieldPanel extends JPanel{
 	private Grid grid;
 	
 	
-	public GameFieldPanel(int cardCount, int preferredSize) {
+	public GameFieldPanel(Controller controller,int cardCount, int preferredSize) {
 		
-		int size = (preferredSize-(20*cardCount))/cardCount ;
-		grid = new Grid(cardCount, cardCount,size);
+		int size = 5* preferredSize / cardCount ;
+		grid = new Grid(controller,cardCount, cardCount,size);
 		
 		this.add(grid);
 		

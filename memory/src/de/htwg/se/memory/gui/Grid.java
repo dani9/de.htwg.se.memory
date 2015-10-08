@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import de.htwg.se.memory.controller.Controller;
 import de.htwg.se.memory.util.IconContainer;
 
 public class Grid extends JPanel {
@@ -25,18 +26,21 @@ public class Grid extends JPanel {
 	private int width;
 	private int height;
 	private int size;
+	private Controller controller;
 
 	// width height pictures
-	public Grid(int width, int height, int size) {
+	public Grid(Controller controller, int width, int height, int size) {
 
+		this.controller = controller;
 		this.width = width;
 		this.height = height;
 		this.size = size;
 		this.cards = new HashMap<String, Component>();
+		int playFieldSize = controller.getPlayFieldSize();
 
 		Border border = BorderFactory.createEmptyBorder(10, 10, 10, 10);
 
-		this.setLayout(new GridLayout(width, height, 10, 10));
+		this.setLayout(new GridLayout(playFieldSize, playFieldSize, 10, 10));
 		this.setBackground(Color.white);
 		this.setName("grid");
 		this.setBorder(border);
@@ -51,12 +55,13 @@ public class Grid extends JPanel {
 	private JPanel[] initEmptyPictures() {
 
 		Border loweredbevel = BorderFactory.createLoweredBevelBorder();
-		Border border = BorderFactory.createCompoundBorder(
-				BorderFactory.createRaisedBevelBorder(), loweredbevel);
+		Border border = BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), loweredbevel);
 
-		JButton[] pictures = new JButton[width * height];
+		int playFieldSize = controller.getPlayFieldSize();
+		System.out.println(playFieldSize + "!!!!");
+		JCard[] pictures = new JCard[playFieldSize * playFieldSize];
 		JPanel[] panels = new JPanel[pictures.length];
-		
+
 		ActionListener listener = new GridActionListener(size);
 
 		for (int i = 0; i < pictures.length; i++) {
@@ -66,20 +71,21 @@ public class Grid extends JPanel {
 			panels[i].setBorder(border);
 			panels[i].setLayout(new BorderLayout());
 			panels[i].setName("CAD" + i);
+			// TODO
 
-			pictures[i] = new JButton();
+			System.out.println("x:" + ((int) i / playFieldSize) + " y" + i % playFieldSize);
+			pictures[i] = new JCard(controller.getField((int) i / playFieldSize, i % playFieldSize));
+
 			pictures[i].setName("BTN" + i);
 			pictures[i].addActionListener(listener);
 			pictures[i].setPreferredSize(new Dimension(this.size, this.size));
 			pictures[i].setBorderPainted(false);
 			pictures[i].setFocusPainted(false);
 			pictures[i].setContentAreaFilled(false);
-			
-			
-			//TODO
+
+			// TODO
 			IconContainer icons = IconContainer.getInstance();
-			pictures[i].setIcon(icons.getIcon("PIC"+ (IconContainer.CARD_BACK),this.size,this.size));
-			
+			pictures[i].setIcon(icons.getIcon("PIC" + (IconContainer.CARD_BACK), this.size, this.size));
 
 			this.cards.put("BTN" + i, pictures[i]);
 			this.cards.put("CAD" + i, panels[i]);
@@ -96,8 +102,7 @@ public class Grid extends JPanel {
 
 			IconContainer icons = IconContainer.getInstance();
 
-			((JButton) this.cards.get(btnID)).setIcon(icons.getIcon(picID, this.size,
-					this.size));
+			((JButton) this.cards.get(btnID)).setIcon(icons.getIcon(picID, this.size, this.size));
 		}
 
 	}

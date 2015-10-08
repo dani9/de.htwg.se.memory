@@ -6,6 +6,8 @@ import java.awt.Component;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import de.htwg.se.memory.controller.Controller;
+
 public class GUI extends JFrame {
 	
 	private static final long serialVersionUID = -4305625036085082377L;
@@ -15,9 +17,15 @@ public class GUI extends JFrame {
 	private CardLayout mainPanel;
 	private JPanel mainCardPanel;
 	
-	public GUI() {
+	public GUI(Controller controller) {
+		
+		
+		
 		
 		this.setTitle("GUI MEMORY LAYOUT");
+		
+		controller.startGame(16, false);
+		
 		this.setName("main");
 		
 		
@@ -26,9 +34,9 @@ public class GUI extends JFrame {
 		mainCardPanel = new JPanel(mainPanel);
 		
 		/*TEST*/
-		mainCardPanel.add(new GameFieldPanel(1, 900), "");
+		mainCardPanel.add(new GameFieldPanel(controller,controller.getPlayFieldSize()*controller.getPlayFieldSize(), 900), "");
 		mainCardPanel.add(new ScoreBoard(), "test");
-		mainPanel.show(mainCardPanel, "test");
+		//mainPanel.show(mainCardPanel, "test");
 		
 		
 		this.add(mainCardPanel);
@@ -43,7 +51,7 @@ public class GUI extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new GUI();
+		new GUI(new Controller());
 	}
 	
 	public void showPanel(int index){
