@@ -3,6 +3,8 @@ package de.htwg.se.memory.gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JPanel;
+
 import de.htwg.se.memory.util.IconContainer;
 
 public class GridActionListener implements ActionListener {
@@ -24,10 +26,20 @@ public class GridActionListener implements ActionListener {
 		String selectedIcon = "PIC"+(1+ Integer.parseInt(source.getField().getFieldId() )  );
 		
 		
+		if (source.getField().isGuessed()){
+			source.setIcon(null);
+			((JPanel)source.getParent()).setBorder(null);
+			
+			
+			
+		}else{
+
+			source.setIcon(icons.getIcon(selectedIcon,size, size));
+		}
+		
 		System.out.println("FIELD ID AND PIC: "+selectedIcon);
 		System.out.println("ID");
 		
-		source.setIcon(icons.getIcon(selectedIcon,size, size));
 	}
 
 }

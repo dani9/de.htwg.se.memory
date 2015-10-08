@@ -24,7 +24,7 @@ public class GUI extends JFrame {
 		
 		this.setTitle("GUI MEMORY LAYOUT");
 		
-		controller.startGame(16, false);
+		controller.startGame(8, false);
 		
 		this.setName("main");
 		
