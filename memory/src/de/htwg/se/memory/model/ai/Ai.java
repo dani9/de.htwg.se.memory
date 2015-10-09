@@ -72,7 +72,6 @@ public class Ai {
 			maxListSize = 8;
 		}
 		
-		System.out.println(maxListSize);
 		//Liste auf größe anpassen
 		while (remeberedFields.size() > maxListSize) {
 			remeberedFields.poll();	

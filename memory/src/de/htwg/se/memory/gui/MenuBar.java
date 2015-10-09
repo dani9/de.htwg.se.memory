@@ -3,12 +3,10 @@ package de.htwg.se.memory.gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
 
 import de.htwg.se.memory.util.IconContainer;
@@ -49,7 +47,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 
 		jRadioButtonMenuItems = new JRadioButtonMenuItem[3];
 		for (int i = 0; i < jRadioButtonMenuItems.length; i++) {
-			addRadioOptionToMenu(menuSettings, i, 4);
+			addRadioOptionToMenu(menuSettings, i, (i + 1) * 4);
 		}
 		return menuSettings;
 	}
@@ -75,7 +73,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 			// TODO
 			System.out.println("START");
 
-		} else if (comp instanceof JRadioButton) {
+		} else if (comp instanceof JRadioButtonMenuItem) {
 			toggelRadioBoxEvent(comp);
 
 		}
@@ -102,9 +100,11 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	}
 
 	private void setAllRadioBoxFalse() {
-		jRadioButtonMenuItems[0].setSelected(false);
-		jRadioButtonMenuItems[1].setSelected(false);
-		jRadioButtonMenuItems[2].setSelected(false);
+
+		for (int i = 0; i < jRadioButtonMenuItems.length; i++) {
+			jRadioButtonMenuItems[i].setSelected(false);
+		}
+
 	}
 
 }

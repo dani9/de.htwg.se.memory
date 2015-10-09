@@ -21,7 +21,6 @@ public class GridActionListener implements ActionListener {
 
 		IconContainer icons = IconContainer.getInstance();
 		JCard source = (JCard) arg0.getSource();
-		System.out.println("CardPressed ID: " + source.getName() );
 		
 		String selectedIcon = "PIC"+(1+ Integer.parseInt(source.getField().getFieldId() )  );
 		
@@ -29,16 +28,11 @@ public class GridActionListener implements ActionListener {
 		if (source.getField().isGuessed()){
 			source.setIcon(null);
 			((JPanel)source.getParent()).setBorder(null);
-			
-			
-			
+				
 		}else{
 
 			source.setIcon(icons.getIcon(selectedIcon,size, size));
 		}
-		
-		System.out.println("FIELD ID AND PIC: "+selectedIcon);
-		System.out.println("ID");
 		
 	}
 

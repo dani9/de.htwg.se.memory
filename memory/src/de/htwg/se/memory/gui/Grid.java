@@ -23,8 +23,6 @@ public class Grid extends JPanel {
 	private static final long serialVersionUID = -234046136726127157L;
 
 	private Map<String, Component> cards;
-	private int width;
-	private int height;
 	private int size;
 	private Controller controller;
 
@@ -32,8 +30,6 @@ public class Grid extends JPanel {
 	public Grid(Controller controller, int width, int height, int size) {
 
 		this.controller = controller;
-		this.width = width;
-		this.height = height;
 		this.size = size;
 		this.cards = new HashMap<String, Component>();
 		int playFieldSize = controller.getPlayFieldSize();
@@ -58,7 +54,6 @@ public class Grid extends JPanel {
 		Border border = BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), loweredbevel);
 
 		int playFieldSize = controller.getPlayFieldSize();
-		System.out.println(playFieldSize + "!!!!");
 		JCard[] pictures = new JCard[playFieldSize * playFieldSize];
 		JPanel[] panels = new JPanel[pictures.length];
 
@@ -72,8 +67,6 @@ public class Grid extends JPanel {
 			panels[i].setLayout(new BorderLayout());
 			panels[i].setName("CAD" + i);
 			// TODO
-
-			System.out.println("x:" + ((int) i / playFieldSize) + " y" + i % playFieldSize);
 			pictures[i] = new JCard(controller.getField((int) i / playFieldSize, i % playFieldSize));
 
 			pictures[i].setName("BTN" + i);
