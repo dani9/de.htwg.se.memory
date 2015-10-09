@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import de.htwg.se.memory.controller.Controller;
+import de.htwg.se.memory.model.playingField.Field;
 import de.htwg.se.memory.util.IconContainer;
 
 public class Grid extends JPanel {
@@ -67,7 +68,8 @@ public class Grid extends JPanel {
 			panels[i].setLayout(new BorderLayout());
 			panels[i].setName("CAD" + i);
 			// TODO
-			pictures[i] = new JCard(controller.getField((int) i / playFieldSize, i % playFieldSize));
+			Field field = controller.getField((int) i / playFieldSize, i % playFieldSize);
+			pictures[i] = new JCard(field);
 
 			pictures[i].setName("BTN" + i);
 			pictures[i].addActionListener(listener);
@@ -78,8 +80,19 @@ public class Grid extends JPanel {
 
 			// TODO
 			IconContainer icons = IconContainer.getInstance();
-			pictures[i].setIcon(icons.getIcon("PIC" + (IconContainer.CARD_BACK), this.size, this.size));
+			if (field.isGuessed()) {
+				pictures[i].setIcon(null);
+				panels[i].setBorder(null);
 
+			} else if (field.isVisible()) {
+				String selectedIcon = "PIC" + (1 + Integer.parseInt(field.getFieldId()));
+				pictures[i].setIcon(icons.getIcon(selectedIcon, size, size));
+			} else {
+
+				pictures[i].setIcon(icons.getIcon("PIC" + (IconContainer.CARD_BACK), this.size, this.size));
+			}
+			
+			
 			this.cards.put("BTN" + i, pictures[i]);
 			this.cards.put("CAD" + i, panels[i]);
 
