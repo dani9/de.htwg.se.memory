@@ -54,11 +54,11 @@ public class Grid extends JPanel {
 		Border loweredbevel = BorderFactory.createLoweredBevelBorder();
 		Border border = BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), loweredbevel);
 
+		ActionListener listener = new GridActionListener(size);		
 		int playFieldSize = controller.getPlayFieldSize();
 		JCard[] pictures = new JCard[playFieldSize * playFieldSize];
 		JPanel[] panels = new JPanel[pictures.length];
 
-		ActionListener listener = new GridActionListener(size);
 
 		for (int i = 0; i < pictures.length; i++) {
 
