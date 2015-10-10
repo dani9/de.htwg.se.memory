@@ -26,12 +26,30 @@ public class GridActionListener implements ActionListener {
 		
 		
 		if (source.getField().isGuessed()){
+			
+			/*
+			 * 
+			 * 
+			 * do nothing
 			source.setIcon(null);
 			((JPanel)source.getParent()).setBorder(null);
-				
-		}else{
-
+				*/
+			
+			
+		}else if (source.getField().isVisible()){
+			/*
+			 * 
+			 * 
+			 * do nothing
+			 
 			source.setIcon(icons.getIcon(selectedIcon,size, size));
+			
+			*/
+		}else{
+			
+			
+			//obeserver TODO
+			
 		}
 		
 	}
