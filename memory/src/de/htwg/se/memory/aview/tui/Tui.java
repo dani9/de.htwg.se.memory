@@ -25,6 +25,7 @@ public class Tui extends Thread implements IObserver {
 	@Override
 	public void update(Topic topic) {
 		
+		System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		state = topic;
 		// TODO Auto-generated method stub
 		
@@ -43,6 +44,8 @@ public class Tui extends Thread implements IObserver {
 			break;
 		
 		case WAIT_FOR_CHOICE:
+			printPlayerStats();
+			printPlayingField();
 			System.out.println("chose row an collum z.B.\"3 2\" ");
 			break;
 			

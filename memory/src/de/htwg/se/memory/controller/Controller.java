@@ -127,11 +127,19 @@ public class Controller extends Observable{
 		Choice.column = column;
 		notifyObservers(Topic.CHOICE_WAS_MADE);
 		
+
+		
 		if(turn == 0){
 			++turn;
 			getChoice();
 			
 		}else{
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			nextPlayer();
 		}
 	}
