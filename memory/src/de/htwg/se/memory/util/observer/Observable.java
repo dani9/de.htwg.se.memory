@@ -4,6 +4,8 @@ package de.htwg.se.memory.util.observer;
 
 import java.util.HashSet;
 
+import de.htwg.se.memory.util.observer.IObserver.Topic;
+
 
 public class Observable {
 
@@ -21,9 +23,9 @@ public class Observable {
 		this.observers.clear();
 	}
 	
-	public void notifyObservers(){
+	public void notifyObservers(Topic topic){
 		for (IObserver observer : observers) {
-			observer.update();	
+			observer.update(topic);	
 		}
 	}
 

@@ -1,21 +1,24 @@
-package de.htwg.se.memory.model.user;
+package de.htwg.se.memory.model.player;
 import java.io.Serializable;
 
-public class User implements Serializable{
+import de.htwg.se.memory.controller.Controller;
+
+public class User implements Serializable, Player{
 	
 	private static final long serialVersionUID = 7556473399662776644L;
 	
 	private String name;
 	private String nickname;
-	private String type;
 	private int points;
+	private Controller controller;
 
-	public User(String name, String nickname, String type) {
+	public User(String name, String nickname, Controller controller) {
 		this.name = name;
 		this.nickname = nickname;
-		this.type = type;
+		this.controller = controller;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -24,17 +27,25 @@ public class User implements Serializable{
 		return nickname;
 	}
 
+	@Override
 	public int getPoints() {
 		return points;
-	}
-
-	public String getType() {
-		return type;
 	}
 
 	public void setPoints(int points) {
 		this.points = points;
 	}
 
+	@Override
+	public void getChoice() {
+		controller.waitForChoice();
+		
+	}
+	
+	@Override
+	public void addPoint() {
+		++points;
+		
+	}
 
 }

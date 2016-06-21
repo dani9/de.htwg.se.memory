@@ -1,6 +1,4 @@
-package de.htwg.se.memory.model.ai;
-
-
+package de.htwg.se.memory.model.player;
 
 
 import java.util.LinkedList;
@@ -23,11 +21,12 @@ class FieldWithCordinate{
 	
 }
 
-public class Ai {
+public class Ai implements Player {
 
 	private LinkedList<FieldWithCordinate> remeberedFields = null;
 	private Controller controller;
 	private int difficult;
+	private int points;
 	
 	
 	public Ai(Controller controller, int difficult) {
@@ -81,9 +80,25 @@ public class Ai {
 		
 	}
 	
-
+	boolean firstChoice = true;
+	int[] choices;
+	public void getChoice(){
+		if(firstChoice){
+		 firstChoice = false;
+		 choices = getAiChoice();
+		 System.out.printf("AI CHOOSE %d %d\n", choices[0], choices[1]);
+		 controller.setChoice(choices[0], choices[1]);
+		 
+		 
+		}
+		else{
+			firstChoice = true;
+			System.out.printf("AI CHOOSE %d %d\n", choices[2], choices[3]);
+			controller.setChoice(choices[2], choices[3]);
+		}
+	}
 	
-	public int[] getChoice(){
+	public int[] getAiChoice(){
 		//erstes feld wird geraten
 		int[] choices = new int[4];
 		
@@ -151,6 +166,25 @@ public class Ai {
 		
 		return choices;
 	}
+
+
+	@Override
+	public String getName() {
+		
+		return "AI";
+	}
+
+
+	@Override
+	public void addPoint() {
+		++points;
+		
+	}
 	
+	@Override
+	public int getPoints() {
+		return points;
+	}
 	
+
 }

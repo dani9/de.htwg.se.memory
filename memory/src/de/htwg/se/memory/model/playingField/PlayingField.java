@@ -86,4 +86,17 @@ public class PlayingField {
 		 }
 	 
 	 }
+	 
+	 public boolean isAllGeuessed(){		 
+		 for(int x =0; x < getColumn(); ++x){
+			  for(int y =0; y < getColumn(); ++y){
+				  
+				  if(getField(x, y).isGuessed() == false){
+					  return false;
+				  }
+			  	}
+		 }
+		 
+		 return true;
+	 }
 }

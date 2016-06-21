@@ -59,8 +59,13 @@ public class Field implements Comparable<Field>{
 			return fieldId;
 		}
 		else{
-			return hiddenText;
+			if(isGuessed){
+				return "";
+			}else{
+				return hiddenText;
+			}
 		}
+		
 	}
 
 	@Override
