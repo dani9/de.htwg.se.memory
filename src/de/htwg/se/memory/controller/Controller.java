@@ -42,12 +42,12 @@ public class Controller extends Observable{
 		
 		notifyObservers(Topic.NEW_GAME_STARTED);
 		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		getChoice();
 	}
 	
@@ -66,7 +66,10 @@ public class Controller extends Observable{
 	public int getPlayerPoints(int playerNumber){
 		return players[playerNumber-1].getPoints();
 	}
-	
+	public Player[] getPlayers(){
+		
+		return players;
+	}
 	public void nextPlayer(){
 		turn = 0;
 		++activePlayer;
@@ -74,12 +77,12 @@ public class Controller extends Observable{
 		playingField.hideAll();
 		notifyObservers(Topic.NEXT_PLAYER);
 		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		getChoice();
 	}
 	
@@ -101,11 +104,14 @@ public class Controller extends Observable{
 		return field;
 	}
 	
+	public PlayingField getPlayingField(){
+		return playingField;
+	}
+	
 	
 	public void waitForChoice(){
 		notifyObservers(Topic.WAIT_FOR_CHOICE);
 	}
-	
 	public void setChoice(int row, int column){
 		
 		Field field = getField(row, column);
@@ -141,13 +147,8 @@ public class Controller extends Observable{
 			getChoice();
 			
 		}else{
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			nextPlayer();
+			notifyObservers(Topic.WAIT_FOR_NEXT_PLAYER);
+			
 		}
 	}
 }

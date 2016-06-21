@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import de.htwg.se.memory.controller.Controller;
-import de.htwg.se.memory.model.player.User;
 import de.htwg.se.memory.util.observer.IObserver;
 
 public class Gui extends JFrame implements IObserver {
@@ -45,8 +44,7 @@ public class Gui extends JFrame implements IObserver {
 		// this.controller.getPlayFieldSize() *
 		// this.controller.getPlayFieldSize(), 900), "");
 		mainCardPanel.add(new ScoreBoard(), "test");
-		panelInfo = new PanelInfo(new User("not set", "not set", controller),
-				new User("not set", "not set", controller));
+		panelInfo = new PanelInfo();
 
 		frontPanel.add(mainCardPanel);
 		frontPanel.add(panelInfo, BorderLayout.SOUTH);
@@ -67,6 +65,8 @@ public class Gui extends JFrame implements IObserver {
 
 		showPanel(panelToShow);
 		panelInfo.refresh();
+		this.revalidate();
+		this.repaint();
 
 	}
 
@@ -93,31 +93,26 @@ public class Gui extends JFrame implements IObserver {
 	@Override
 	public void update(Topic topic) {
 
-		// mainCardPanel.add(new GameFieldPanel(controller,
-		// controller.getPlayFieldSize() * 2, 900), this.turn + "");
-
 		switch (topic) {
 		case CHOICE_WAS_MADE:
-			break;
 		case NEW_GAME_STARTED:
-			break;
-		case NEXT_PLAYER:
-			break;
-
 		case WAIT_FOR_CHOICE:
-			System.out.println("chose row an collum z.B.\"3 2\" ");
+		case NEXT_PLAYER:
+		case WAIT_FOR_NEXT_PLAYER:
+			
+			mainCardPanel.add(new GameFieldPanel(controller,topic,controller.getPlayFieldSize() * 2,500/controller.getPlayFieldSize()), this.turn + "");
+			
 			break;
-
+		
+		
 		case GAME_FINISHED:
 
 			System.out.println("GAME FINISHED");
 
 		case GAME_INIT:
-			//mainCardPanel.add(new GameFieldPanel(controller,controller.getPlayFieldSize() * 2, 900), this.turn + "");
-			//System.out.println("Enter two usernames and a field size %s %s %i");
-			
-			System.out.println("gamse");
+
 			mainCardPanel.add(new GameStartPanel(controller), this.turn + "");
+			panelInfo.setUsers(controller.getPlayers()[0], controller.getPlayers()[1]);
 			break;
 
 		}

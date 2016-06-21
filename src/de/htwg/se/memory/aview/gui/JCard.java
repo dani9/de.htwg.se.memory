@@ -7,15 +7,31 @@ public class JCard extends JButton {
 	
 	
 	private static final long serialVersionUID = -585620824813026570L;
-	private Field id;
+	private Field field;
+	private int row, column;
 	
 	
-	public JCard(Field id) {
-		this.id = id;
+	public JCard(Field id, int row, int column) {
+		this.field = id;
+		this.row = row;
+		this.column = column;
+		
+		
 	}
 	
+	
+	public int getRow() {
+		return row;
+	}
+
+
+	public int getColumn() {
+		return column;
+	}
+
+
 	public Field getField() {
-		return id;
+		return field;
 	}
 	
 

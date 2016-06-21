@@ -7,7 +7,6 @@ import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 
 import de.htwg.se.memory.util.IconContainer;
@@ -22,17 +21,12 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		IconContainer icons = IconContainer.getInstance();
 
 		JMenu menuGame = new JMenu("Game");
-		JMenuItem itemStart = new JMenuItem("play", icons.getIcon("PIC" + IconContainer.USER));
-		itemStart.setName("start");
-		itemStart.addActionListener(this);
+		
 
 		JMenuItem itemExit = new JMenuItem("exit", icons.getIcon("PIC" + IconContainer.EXIT));
 		itemExit.setName("exit");
 		itemExit.addActionListener(this);
 
-		menuGame.add(itemStart);
-		menuGame.addSeparator();
-		menuGame.addSeparator();
 		menuGame.add(itemExit);
 
 		JMenu menuSettings = createSettingsMenu();

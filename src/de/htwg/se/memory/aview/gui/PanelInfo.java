@@ -7,16 +7,16 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import de.htwg.se.memory.model.player.User;
+import de.htwg.se.memory.model.player.Player;
 
 public class PanelInfo extends JPanel {
 
 	private static final long serialVersionUID = -6662534236167851124L;
 
-	private User user_0, user_1;
+	private Player user_0, user_1;
 	private JLabel info = new JLabel();
 
-	public PanelInfo(User user_0, User user_1) {
+	public PanelInfo() {
 
 		this.user_0 = null;
 		this.user_1 = null;
@@ -24,14 +24,14 @@ public class PanelInfo extends JPanel {
 		this.setLayout(new BorderLayout());
 		
 		
-		this.refresh();
+		
 		this.add(info, BorderLayout.WEST);
 		this.setVisible(true);
 		this.setBackground(Color.WHITE);
 		this.setName("PanelInfo");
 
 	}
-	public void setUsers(User user_0, User user_1){
+	public void setUsers(Player user_0, Player user_1){
 		
 		this.user_0 = user_0;
 		this.user_1 = user_1;

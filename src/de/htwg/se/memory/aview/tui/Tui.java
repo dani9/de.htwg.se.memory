@@ -1,7 +1,6 @@
 package de.htwg.se.memory.aview.tui;
 
 import java.util.Scanner;
-
 import de.htwg.se.memory.controller.Controller;
 import de.htwg.se.memory.util.observer.IObserver;
 
@@ -31,17 +30,17 @@ public class Tui extends Thread implements IObserver {
 		// TODO Auto-generated method stub
 
 		switch (state) {
+
 		case CHOICE_WAS_MADE:
-			printActivePlayerStats();
-			printPlayingField();
-			break;
+		case NEXT_PLAYER:
 		case NEW_GAME_STARTED:
 			printActivePlayerStats();
 			printPlayingField();
 			break;
-		case NEXT_PLAYER:
+		case WAIT_FOR_NEXT_PLAYER:
 			printActivePlayerStats();
 			printPlayingField();
+			System.out.println(controller.getActivePlayerName() + " press Enter to begin.");
 			break;
 
 		case WAIT_FOR_CHOICE:
@@ -97,15 +96,17 @@ public class Tui extends Thread implements IObserver {
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 
-		while (true) {
-			String readed = scanner.next();
+		while (Thread.activeCount() == 2) {
+			String readed = scanner.nextLine();
 
 			switch (state) {
 			case WAIT_FOR_CHOICE:
-				int row = Integer.parseInt(readed);
-				int column = Integer.parseInt(scanner.next());
+				if (readed.trim().split(" ").length == 2) {
+					int row = Integer.parseInt(readed.trim().split(" ")[0]);
+					int column = Integer.parseInt(readed.trim().split(" ")[1]);
 
-				controller.setChoice(row, column);
+					controller.setChoice(row, column);
+				}
 				break;
 
 			case CHOICE_WAS_MADE:
@@ -115,15 +116,20 @@ public class Tui extends Thread implements IObserver {
 			case NEW_GAME_STARTED:
 
 				break;
-
+			case WAIT_FOR_NEXT_PLAYER:
+				controller.nextPlayer();
+				break;
 			case GAME_FINISHED:
 
 			case GAME_INIT:
-				String player1Name = readed;
-				String player2Name = scanner.next();
-				int fieldSize = Integer.parseInt(scanner.next());
 
-				controller.startGame(fieldSize, player1Name, player2Name);
+				if (readed.trim().split(" ").length == 3) {
+					String player1Name = readed.trim().split(" ")[0];
+					String player2Name = readed.trim().split(" ")[1];
+					int fieldSize = Integer.parseInt(readed.trim().split(" ")[2]);
+
+					controller.startGame(fieldSize, player1Name, player2Name);
+				}
 				break;
 			default:
 				break;
@@ -131,4 +137,7 @@ public class Tui extends Thread implements IObserver {
 		}
 		// scanner.close();
 	}
+
+	
+	
 }

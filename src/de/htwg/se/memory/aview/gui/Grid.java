@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,23 +19,24 @@ import javax.swing.border.Border;
 import de.htwg.se.memory.controller.Controller;
 import de.htwg.se.memory.model.playingField.Field;
 import de.htwg.se.memory.util.IconContainer;
+import de.htwg.se.memory.util.observer.IObserver.Topic;
 
-public class Grid extends JPanel {
+public class Grid extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = -234046136726127157L;
 
 	private Map<String, Component> cards;
 	private int size;
 	private Controller controller;
+	private Topic topic;
 
 	// width height pictures
-	public Grid(Controller controller, int width, int height, int size) {
-
+	public Grid(Controller controller, Topic topic, int width, int height, int size) {
+		this.topic = topic;
 		this.controller = controller;
 		this.size = size;
 		this.cards = new HashMap<String, Component>();
 		int playFieldSize = controller.getPlayFieldSize();
-
 		Border border = BorderFactory.createEmptyBorder(10, 10, 10, 10);
 
 		this.setLayout(new GridLayout(playFieldSize, playFieldSize, 10, 10));
@@ -54,11 +56,9 @@ public class Grid extends JPanel {
 		Border loweredbevel = BorderFactory.createLoweredBevelBorder();
 		Border border = BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), loweredbevel);
 
-		ActionListener listener = new GridActionListener(size);		
 		int playFieldSize = controller.getPlayFieldSize();
 		JCard[] pictures = new JCard[playFieldSize * playFieldSize];
 		JPanel[] panels = new JPanel[pictures.length];
-
 
 		for (int i = 0; i < pictures.length; i++) {
 
@@ -68,11 +68,13 @@ public class Grid extends JPanel {
 			panels[i].setLayout(new BorderLayout());
 			panels[i].setName("CAD" + i);
 			// TODO
-			Field field = controller.getField((int) i / playFieldSize, i % playFieldSize);
-			pictures[i] = new JCard(field);
+			int row = (int) i / playFieldSize;
+			int column = i % playFieldSize;
+			Field field = controller.getField(row, column);
+			pictures[i] = new JCard(field, row, column);
 
 			pictures[i].setName("BTN" + i);
-			pictures[i].addActionListener(listener);
+			pictures[i].addActionListener(this);
 			pictures[i].setPreferredSize(new Dimension(this.size, this.size));
 			pictures[i].setBorderPainted(false);
 			pictures[i].setFocusPainted(false);
@@ -88,11 +90,9 @@ public class Grid extends JPanel {
 				String selectedIcon = "PIC" + (1 + Integer.parseInt(field.getFieldId()));
 				pictures[i].setIcon(icons.getIcon(selectedIcon, size, size));
 			} else {
-
 				pictures[i].setIcon(icons.getIcon("PIC" + (IconContainer.CARD_BACK), this.size, this.size));
 			}
-			
-			
+
 			this.cards.put("BTN" + i, pictures[i]);
 			this.cards.put("CAD" + i, panels[i]);
 
@@ -152,6 +152,44 @@ public class Grid extends JPanel {
 	 */
 	public Set<String> getComponentMapKeySet() {
 		return cards.keySet();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+
+		JCard source = (JCard) arg0.getSource();
+
+		if (source.getField().isGuessed()) {
+
+		} else if (source.getField().isVisible()) {
+			switch (topic) {
+
+			case WAIT_FOR_NEXT_PLAYER:
+				controller.nextPlayer();
+				controller.setChoice(source.getRow(), source.getColumn());
+				break;
+			default:
+				break;
+
+			}
+		} else {
+
+			switch (topic) {
+			case WAIT_FOR_CHOICE:
+				controller.setChoice(source.getRow(), source.getColumn());
+				break;
+
+			case WAIT_FOR_NEXT_PLAYER:
+				controller.nextPlayer();
+				controller.setChoice(source.getRow(), source.getColumn());
+				break;
+			default:
+				break;
+
+			}
+
+		}
+
 	}
 
 }
