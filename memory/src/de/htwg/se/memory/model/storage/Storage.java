@@ -1,6 +1,6 @@
 package de.htwg.se.memory.model.storage;
 
-import de.htwg.se.memory.model.user.User;
+import de.htwg.se.memory.model.player.Player;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,12 +24,12 @@ public class Storage {
 
 	}
 
-	public boolean save(User u) {
+	public boolean save(Player u) {
 
 		try {
 
 			FileOutputStream out = new FileOutputStream(workingdir
-					+ u.getNickname());
+					+ u.getName());
 			ObjectOutputStream put = new ObjectOutputStream(out);
 			put.writeObject(u);
 			put.close();
@@ -41,18 +41,18 @@ public class Storage {
 		return true;
 	}
 
-	public User load(User u) {
+	public Player load(Player u) {
 		try {
 
 			FileInputStream in = new FileInputStream(workingdir
-					+ u.getNickname());
+					+ u.getName());
 			ObjectInputStream userObject = new ObjectInputStream(in);
 
 			Object obj = userObject.readObject();
 
 			userObject.close();
 
-			return (User) obj;
+			return (Player) obj;
 
 		} catch (Exception ex) {
 
