@@ -12,7 +12,7 @@ import de.htwg.se.memory.controller.Controller;
 import de.htwg.se.memory.model.player.User;
 import de.htwg.se.memory.util.observer.IObserver;
 
-public class Gui extends JFrame implements IObserver{
+public class Gui extends JFrame implements IObserver {
 
 	private static final long serialVersionUID = -4305625036085082377L;
 	public static final int PANEL_START = 0;
@@ -23,7 +23,7 @@ public class Gui extends JFrame implements IObserver{
 	private int turn;
 	private Controller controller;
 	private PanelInfo panelInfo;
-
+	private MenuBar menuBar;
 	public Gui(Controller controller) {
 
 		this.controller = controller;
@@ -32,6 +32,7 @@ public class Gui extends JFrame implements IObserver{
 
 		this.setName("main");
 
+		menuBar = new MenuBar();
 		JPanel frontPanel = new JPanel();
 		frontPanel.setLayout(new BorderLayout());
 		frontPanel.setBackground(Color.white);
@@ -40,17 +41,20 @@ public class Gui extends JFrame implements IObserver{
 		mainCardPanel = new JPanel(mainPanel);
 
 		/* TEST */
-		//mainCardPanel.add(new GameFieldPanel(this.controller, this.controller.getPlayFieldSize() * this.controller.getPlayFieldSize(), 900), "");
+		// mainCardPanel.add(new GameFieldPanel(this.controller,
+		// this.controller.getPlayFieldSize() *
+		// this.controller.getPlayFieldSize(), 900), "");
 		mainCardPanel.add(new ScoreBoard(), "test");
-		panelInfo = new PanelInfo(new User("not set", "not set", controller), new User("not set", "not set", controller));
+		panelInfo = new PanelInfo(new User("not set", "not set", controller),
+				new User("not set", "not set", controller));
 
 		frontPanel.add(mainCardPanel);
 		frontPanel.add(panelInfo, BorderLayout.SOUTH);
 		// mainPanel.show(mainCardPanel, "test");
+		this.turn = 0;
 
 		this.add(frontPanel);
-
-		this.setJMenuBar(new MenuBar());
+		this.setJMenuBar(menuBar);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.validate();
@@ -59,10 +63,9 @@ public class Gui extends JFrame implements IObserver{
 
 	}
 
-	public void refresh() {
+	public void refresh(int panelToShow) {
 
-		mainCardPanel.add(new GameFieldPanel(controller, controller.getPlayFieldSize() * controller.getPlayFieldSize(), 900), this.turn + "");
-		showPanel(this.turn);
+		showPanel(panelToShow);
 		panelInfo.refresh();
 
 	}
@@ -89,8 +92,35 @@ public class Gui extends JFrame implements IObserver{
 
 	@Override
 	public void update(Topic topic) {
-		// TODO Auto-generated method stub
-		
-	}
 
+		// mainCardPanel.add(new GameFieldPanel(controller,
+		// controller.getPlayFieldSize() * 2, 900), this.turn + "");
+
+		switch (topic) {
+		case CHOICE_WAS_MADE:
+			break;
+		case NEW_GAME_STARTED:
+			break;
+		case NEXT_PLAYER:
+			break;
+
+		case WAIT_FOR_CHOICE:
+			System.out.println("chose row an collum z.B.\"3 2\" ");
+			break;
+
+		case GAME_FINISHED:
+
+			System.out.println("GAME FINISHED");
+
+		case GAME_INIT:
+			//mainCardPanel.add(new GameFieldPanel(controller,controller.getPlayFieldSize() * 2, 900), this.turn + "");
+			//System.out.println("Enter two usernames and a field size %s %s %i");
+			
+			System.out.println("gamse");
+			mainCardPanel.add(new GameStartPanel(controller), this.turn + "");
+			break;
+
+		}
+		this.refresh(this.turn++);
+	}
 }

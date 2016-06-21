@@ -37,7 +37,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 
 		JMenu menuSettings = createSettingsMenu();
 		toggelRadioBoxTO(0);
-
+		this.setName("menuBar");
 		this.add(menuGame);
 		this.add(menuSettings);
 
@@ -89,6 +89,18 @@ public class MenuBar extends JMenuBar implements ActionListener {
 			}
 		}
 
+	}
+	
+	public int getRadioSelectedValue(){
+		
+		for (JRadioButtonMenuItem jRadioButtonMenuItem : jRadioButtonMenuItems) {
+			if(jRadioButtonMenuItem.isSelected()){
+				return Integer.parseInt( jRadioButtonMenuItem.getName());
+				
+			}
+		}
+		
+		return 4;
 	}
 
 	private void toggelRadioBoxTO(int i) {
