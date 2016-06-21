@@ -2,7 +2,6 @@ package de.htwg.se.memory;
 
 import de.htwg.se.memory.aview.tui.Tui;
 import de.htwg.se.memory.controller.Controller;
-import de.htwg.se.memory.model.player.User;
 import de.htwg.se.memory.util.observer.IObserver.Topic;
 
 final class Memory {

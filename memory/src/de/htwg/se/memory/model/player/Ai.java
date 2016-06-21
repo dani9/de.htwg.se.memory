@@ -30,7 +30,6 @@ public class Ai implements Player {
 	
 	
 	public Ai(Controller controller, int difficult) {
-		// TODO Auto-generated constructor stub
 		this.controller = controller;
 		setDifficultLevel(difficult);
 		remeberedFields = new LinkedList<FieldWithCordinate>();

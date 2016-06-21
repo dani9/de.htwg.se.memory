@@ -1,7 +1,5 @@
 package de.htwg.se.memory.controller;
 
-import javax.swing.plaf.SliderUI;
-
 import de.htwg.se.memory.model.player.*;
 import de.htwg.se.memory.model.playingField.Field;
 import de.htwg.se.memory.model.playingField.PlayingField;

@@ -94,6 +94,7 @@ public class Tui extends Thread implements IObserver {
 	}
 
 	private void readInput() {
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 
 		while (true) {
