@@ -60,6 +60,14 @@ public class Controller extends Observable{
 		return players[activePlayer].getPoints();
 	}
 	
+	public String getPlayerName(int playerNumber){
+		return players[playerNumber-1].getName();
+	}
+	
+	public int getPlayerPoints(int playerNumber){
+		return players[playerNumber-1].getPoints();
+	}
+	
 	public void nextPlayer(){
 		turn = 0;
 		++activePlayer;

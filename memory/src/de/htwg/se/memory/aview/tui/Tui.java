@@ -15,6 +15,7 @@ public class Tui extends Thread implements IObserver {
 	}
 
 	Topic state;
+
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
@@ -24,49 +25,57 @@ public class Tui extends Thread implements IObserver {
 
 	@Override
 	public void update(Topic topic) {
-		
+
 		System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		state = topic;
 		// TODO Auto-generated method stub
-		
+
 		switch (state) {
 		case CHOICE_WAS_MADE:
-			printPlayerStats();
+			printActivePlayerStats();
 			printPlayingField();
-			break;		
+			break;
 		case NEW_GAME_STARTED:
-			printPlayerStats();
+			printActivePlayerStats();
 			printPlayingField();
 			break;
 		case NEXT_PLAYER:
-			printPlayerStats();
+			printActivePlayerStats();
 			printPlayingField();
 			break;
-		
+
 		case WAIT_FOR_CHOICE:
-			printPlayerStats();
+			printActivePlayerStats();
 			printPlayingField();
 			System.out.println("chose row an collum z.B.\"3 2\" ");
 			break;
-			
+
 		case GAME_FINISHED:
-			System.out.println("GAME FINISHED (TODO:PRINT POINTS)");
-			
+
+			System.out.println("GAME FINISHED");
+			printPlayerStats(1);
+			printPlayerStats(2);
+
 		case GAME_INIT:
 			System.out.println("Enter two usernames and a field size %s %s %i");
-			
+
 			break;
-		
+
 		default:
 			break;
 		}
-		
+
 	}
 
-	private void printPlayerStats(){
-		System.out.printf("%-10s\n", controller.getActivePlayerName());
+	private void printActivePlayerStats() {
+		System.out.printf("%-10sPoints: %d\n", controller.getActivePlayerName(), controller.getActivePlayerPoints());
 	}
-	
+
+	private void printPlayerStats(int playerNumber) {
+		System.out.printf("%-10sPoints: %d\n", controller.getPlayerName(playerNumber),
+				controller.getPlayerPoints(playerNumber));
+	}
+
 	private void printPlayingField() {
 		int fieldSize = controller.getPlayFieldSize();
 		System.out.printf("%-4s", "");
@@ -83,45 +92,42 @@ public class Tui extends Thread implements IObserver {
 			System.out.println("");
 		}
 	}
-	
-	private void readInput(){
+
+	private void readInput() {
 		Scanner scanner = new Scanner(System.in);
-		
-		
-		while(true){
-			String readed =	scanner.next();
-			
+
+		while (true) {
+			String readed = scanner.next();
+
 			switch (state) {
 			case WAIT_FOR_CHOICE:
 				int row = Integer.parseInt(readed);
 				int column = Integer.parseInt(scanner.next());
-				
+
 				controller.setChoice(row, column);
 				break;
-				
+
 			case CHOICE_WAS_MADE:
-				
+
 				break;
-				
+
 			case NEW_GAME_STARTED:
-				
+
 				break;
-				
+
 			case GAME_FINISHED:
-				
-				
-				
+
 			case GAME_INIT:
 				String player1Name = readed;
 				String player2Name = scanner.next();
-				int fieldSize =  Integer.parseInt(scanner.next());
-				
+				int fieldSize = Integer.parseInt(scanner.next());
+
 				controller.startGame(fieldSize, player1Name, player2Name);
 				break;
 			default:
 				break;
 			}
 		}
-	//	scanner.close();
+		// scanner.close();
 	}
 }
