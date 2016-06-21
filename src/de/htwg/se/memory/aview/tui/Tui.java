@@ -97,7 +97,13 @@ public class Tui extends Thread implements IObserver {
 		Scanner scanner = new Scanner(System.in);
 
 		while (Thread.activeCount() == 2) {
-			String readed = scanner.nextLine();
+			String readed = "";
+			try {
+				readed = scanner.nextLine();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
 
 			switch (state) {
 			case WAIT_FOR_CHOICE:

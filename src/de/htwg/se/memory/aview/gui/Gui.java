@@ -4,11 +4,17 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 
 import de.htwg.se.memory.controller.Controller;
+import de.htwg.se.memory.model.player.Player;
 import de.htwg.se.memory.util.observer.IObserver;
 
 public class Gui extends JFrame implements IObserver {
@@ -21,13 +27,13 @@ public class Gui extends JFrame implements IObserver {
 	private JPanel mainCardPanel;
 	private int turn;
 	private Controller controller;
-	private PanelInfo panelInfo;
 	private MenuBar menuBar;
+	private JLabel statusLabel;
 	public Gui(Controller controller) {
 
 		this.controller = controller;
 
-		this.setTitle("GUI MEM LAYOUT");
+		this.setTitle("MEMORY");
 
 		this.setName("main");
 
@@ -44,14 +50,24 @@ public class Gui extends JFrame implements IObserver {
 		// this.controller.getPlayFieldSize() *
 		// this.controller.getPlayFieldSize(), 900), "");
 		mainCardPanel.add(new ScoreBoard(), "test");
-		panelInfo = new PanelInfo();
 
 		frontPanel.add(mainCardPanel);
-		frontPanel.add(panelInfo, BorderLayout.SOUTH);
+		this.setLayout(new BorderLayout());
 		// mainPanel.show(mainCardPanel, "test");
 		this.turn = 0;
 
-		this.add(frontPanel);
+		JPanel statusPanel = new JPanel();
+		statusPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
+		this.add(statusPanel, BorderLayout.SOUTH);
+		statusPanel.setPreferredSize(new Dimension(this.getWidth(), 16));
+		statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.X_AXIS));
+		statusLabel = new JLabel("status");
+		statusLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		statusPanel.add(statusLabel);
+
+		
+		
+		this.add(frontPanel, BorderLayout.CENTER);
 		this.setJMenuBar(menuBar);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,7 +80,7 @@ public class Gui extends JFrame implements IObserver {
 	public void refresh(int panelToShow) {
 
 		showPanel(panelToShow);
-		panelInfo.refresh();
+		
 		this.revalidate();
 		this.repaint();
 
@@ -92,7 +108,7 @@ public class Gui extends JFrame implements IObserver {
 
 	@Override
 	public void update(Topic topic) {
-
+		String status = "";
 		switch (topic) {
 		case CHOICE_WAS_MADE:
 		case NEW_GAME_STARTED:
@@ -101,21 +117,33 @@ public class Gui extends JFrame implements IObserver {
 		case WAIT_FOR_NEXT_PLAYER:
 			
 			mainCardPanel.add(new GameFieldPanel(controller,topic,controller.getPlayFieldSize() * 2,500/controller.getPlayFieldSize()), this.turn + "");
-			
+			Player[] players = controller.getPlayers();
+			status = players[0].getName()+": "+players[0].getPoints() +
+					" | " +players[1].getName()+ ": "+players[1].getPoints()+
+					"          "+controller.getActivePlayerName()+"'s turn." ;
 			break;
 		
 		
 		case GAME_FINISHED:
-
-			System.out.println("GAME FINISHED");
+			Player[] playerss = controller.getPlayers();
+		
+			if(playerss[0].getPoints() >= playerss[1].getPoints()){
+				status = playerss[0].getName()+ " wins!";
+			}else{
+				status = playerss[1].getName()+ " wins!";
+			}
+			//mainCardPanel.add(new GameEndPanel(controller), this.turn + "");
+		
 
 		case GAME_INIT:
 
 			mainCardPanel.add(new GameStartPanel(controller), this.turn + "");
-			panelInfo.setUsers(controller.getPlayers()[0], controller.getPlayers()[1]);
 			break;
 
 		}
+		
+		statusLabel.setText((status+ "                                     "+topic).trim());
+		
 		this.refresh(this.turn++);
 	}
 }

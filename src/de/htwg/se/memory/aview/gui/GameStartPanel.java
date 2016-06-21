@@ -15,8 +15,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
-
 import de.htwg.se.memory.controller.Controller;
 
 public class GameStartPanel extends JPanel implements ActionListener {
@@ -26,26 +24,28 @@ public class GameStartPanel extends JPanel implements ActionListener {
 	private JTextField player0, player1;
 
 	public GameStartPanel(Controller controller) {
-		Border space = BorderFactory.createEmptyBorder();
+		Border space = BorderFactory.createEmptyBorder(50,50,50,50);
 		this.setBackground(Color.white);
 		this.controller = controller;
 		this.setName("GameStartPanel");
 		this.player0 = new JTextField("Player0");
 		this.player1 = new JTextField("Player1");
 
-		player0.setPreferredSize(new Dimension(20, 100));
-		player1.setPreferredSize(new Dimension(20, 100));
-
-		JLabel label = new JLabel("Enter Name:");
+		player0.setPreferredSize(new Dimension(100, 20));
+		player1.setPreferredSize(new Dimension(100, 20));
+	
+		JLabel label = new JLabel("                Enter Names:");
 
 		JButton btnStart = new JButton("Start");
 		btnStart.addActionListener(this);
 		btnStart.setName("start");
+		btnStart.setPreferredSize(new Dimension(100, 20));
 
 		JPanel editPanel = new JPanel(new GridLayout(1, 2, 20, 20));
 		editPanel.add(this.player0);
 		editPanel.add(this.player1);
 		editPanel.setBackground(Color.white);
+		editPanel.setBorder(space);
 
 		JPanel centerPanel = new JPanel(new GridLayout(3, 1, 20, 20));
 
@@ -58,8 +58,8 @@ public class GameStartPanel extends JPanel implements ActionListener {
 		centerPanel.add(btnStart);
 
 		centerPanel.setBackground(Color.white);
-		Border raisedetched = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
-		centerPanel.setBorder(raisedetched);
+		//Border raisedetched = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
+		//centerPanel.setBorder(raisedetched);
 
 		this.add(centerPanel, BorderLayout.CENTER);
 		this.setBorder(space);
