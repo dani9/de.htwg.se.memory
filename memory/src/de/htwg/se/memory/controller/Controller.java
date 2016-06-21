@@ -34,6 +34,7 @@ public class Controller extends Observable{
 	public void startGame(int fieldSize, Player player1, Player player2){
 		
 		playingField = new PlayingField(fieldSize);
+		playingField.mix();
 		players[0] = player1;
 		players[1] = player2;
 		activePlayer = 0;
