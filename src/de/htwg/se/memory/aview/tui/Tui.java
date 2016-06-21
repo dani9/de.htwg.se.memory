@@ -96,12 +96,12 @@ public class Tui extends Thread implements IObserver {
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 
-		while (Thread.activeCount() == 2) {
+		while (true) {
 			String readed = "";
 			try {
 				readed = scanner.nextLine();
 			} catch (Exception e) {
-				// TODO: handle exception
+				break;
 			}
 
 
