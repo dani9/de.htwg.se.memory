@@ -34,7 +34,10 @@ public class Grid extends JPanel implements ActionListener {
 	public Grid(Controller controller, Topic topic, int width, int height, int size) {
 		this.topic = topic;
 		this.controller = controller;
-		this.size = size;
+	
+		this.size = size/width-15;
+		
+		System.out.println("size          !!!!!!!!!!"+this.size);
 		this.cards = new HashMap<String, Component>();
 		int playFieldSize = controller.getPlayFieldSize();
 		Border border = BorderFactory.createEmptyBorder(10, 10, 10, 10);
@@ -87,7 +90,8 @@ public class Grid extends JPanel implements ActionListener {
 				panels[i].setBorder(null);
 
 			} else if (field.isVisible()) {
-				String selectedIcon = "PIC" + (1 + Integer.parseInt(field.getFieldId()));
+				int parseInt = Integer.parseInt(field.getFieldId());
+				String selectedIcon = "PIC" + (1 + parseInt);
 				pictures[i].setIcon(icons.getIcon(selectedIcon, size, size));
 			} else {
 				pictures[i].setIcon(icons.getIcon("PIC" + (IconContainer.CARD_BACK), this.size, this.size));

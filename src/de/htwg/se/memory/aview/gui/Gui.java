@@ -110,13 +110,13 @@ public class Gui extends JFrame implements IObserver {
 	public void update(Topic topic) {
 		String status = "";
 		switch (topic) {
-		case CHOICE_WAS_MADE:
+		//case CHOICE_WAS_MADE:
 		case NEW_GAME_STARTED:
 		case WAIT_FOR_CHOICE:
-		case NEXT_PLAYER:
+		//case NEXT_PLAYER:
 		case WAIT_FOR_NEXT_PLAYER:
 			
-			mainCardPanel.add(new GameFieldPanel(controller,topic,controller.getPlayFieldSize() * 2,500/controller.getPlayFieldSize()), this.turn + "");
+			mainCardPanel.add(new GameFieldPanel(controller,topic,controller.getPlayFieldSize() *2  ,920), this.turn + "");
 			Player[] players = controller.getPlayers();
 			status = players[0].getName()+": "+players[0].getPoints() +
 					" | " +players[1].getName()+ ": "+players[1].getPoints()+
@@ -138,6 +138,8 @@ public class Gui extends JFrame implements IObserver {
 		case GAME_INIT:
 
 			mainCardPanel.add(new GameStartPanel(controller), this.turn + "");
+			break;
+		default:
 			break;
 
 		}
