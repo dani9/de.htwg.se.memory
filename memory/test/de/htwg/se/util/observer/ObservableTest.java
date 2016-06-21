@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import de.htwg.se.memory.util.observer.IObserver;
 import de.htwg.se.memory.util.observer.Observable;
+import de.htwg.se.memory.util.observer.IObserver.Topic;
 
 public class ObservableTest {
 
@@ -21,7 +22,7 @@ public class ObservableTest {
 		class TestObserver implements IObserver {
 
 			@Override
-			public void update() {
+			public void update(Topic topic) {
 				ping=true;
 				
 			}
@@ -38,7 +39,7 @@ public class ObservableTest {
 		@Test
 		public void testNotify() {
 			assertFalse(ping);
-			testObservable.notifyObservers();
+			testObservable.notifyObservers(Topic.GAME_FINISHED);
 			assertTrue(ping);
 		}
 		
@@ -46,7 +47,7 @@ public class ObservableTest {
 		public void testRemove() {
 			assertFalse(ping);
 			testObservable.removeObserver(testObserver);
-			testObservable.notifyObservers();
+			testObservable.notifyObservers(Topic.GAME_FINISHED);
 			assertFalse(ping);
 		}
 		
@@ -54,7 +55,7 @@ public class ObservableTest {
 		public void testRemoveAll() {
 			assertFalse(ping);
 			testObservable.removeAllObservers();
-			testObservable.notifyObservers();
+			testObservable.notifyObservers(Topic.GAME_FINISHED);
 			assertFalse(ping);
 		}
 	

@@ -1,11 +1,12 @@
 package de.htwg.se.model.ai;
 import static org.junit.Assert.assertEquals;
+import de.htwg.se.memory.model.player.Ai;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import de.htwg.se.memory.controller.Controller;
-import de.htwg.se.memory.model.ai.Ai;
+
 import de.htwg.se.memory.model.playingField.Field;
 import junit.framework.TestCase;
 public class AiTest {
@@ -14,7 +15,6 @@ public class AiTest {
 	@Before
 	public void setUp(){
 		Controller controller = new Controller();
-		controller.startGame(6, true);
 		ai = new Ai(controller, 1);
 	}
 	
@@ -48,14 +48,5 @@ public class AiTest {
 
 	}
 	
-	@Test
-	public void testGetChoice(){
-	
-	ai.getChoice();
-	ai.getChoice();
-	ai.getChoice();
-	ai.getChoice();
-	
-	}
 	
 }
