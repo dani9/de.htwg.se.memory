@@ -36,7 +36,7 @@ sourceSets {
 }
 
 jar {
-    manifest.attributes "Main-Class":"de.htwg.se.memory"
+    manifest.attributes "Main-Class":"de.htwg.se.memory.Memory"
 }
   
 sonarqube {
