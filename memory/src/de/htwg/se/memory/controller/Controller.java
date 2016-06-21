@@ -22,7 +22,7 @@ public class Controller extends Observable{
 
 	
 	public Controller(){
-		notifyObservers(Topic.GAME_INIT);
+		
 	}
 	
 	public void startGame(int fieldSize, String player1Name, String player2Name){
