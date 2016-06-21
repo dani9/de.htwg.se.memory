@@ -37,7 +37,6 @@ public class Grid extends JPanel implements ActionListener {
 	
 		this.size = size/width-15;
 		
-		System.out.println("size          !!!!!!!!!!"+this.size);
 		this.cards = new HashMap<String, Component>();
 		int playFieldSize = controller.getPlayFieldSize();
 		Border border = BorderFactory.createEmptyBorder(10, 10, 10, 10);
