@@ -28,6 +28,9 @@ dependencies {
     compile group: 'com.google.inject',        name: 'guice',      version: '3.0'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
     testCompile "junit:junit:4.11"
+    
+    compile group: 'org.apache.commons',        name: 'commons-io',      version: '2.4'
+    
 }
 
 sourceSets {
