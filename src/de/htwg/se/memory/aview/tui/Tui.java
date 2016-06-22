@@ -6,28 +6,26 @@ import de.htwg.se.memory.util.observer.IObserver;
 
 public class Tui extends Thread implements IObserver {
 
-	Controller controller;
-
+	private Controller controller;
+	
+	private Topic state;
 	public Tui(Controller controller) {
 		this.controller = controller;
 		this.start();
 	}
 
-	Topic state;
+	;
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		// super.run();
 		readInput();
 	}
 
 	@Override
 	public void update(Topic topic) {
 
-		System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		System.out.print("%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n");
 		state = topic;
-		// TODO Auto-generated method stub
 
 		switch (state) {
 
@@ -141,7 +139,6 @@ public class Tui extends Thread implements IObserver {
 				break;
 			}
 		}
-		// scanner.close();
 	}
 
 	
