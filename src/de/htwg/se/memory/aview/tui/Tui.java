@@ -24,7 +24,7 @@ public class Tui extends Thread implements IObserver {
 	@Override
 	public void update(Topic topic) {
 
-		System.out.print("%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n");
+		System.out.printf("%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n");
 		state = topic;
 
 		switch (state) {
@@ -65,11 +65,11 @@ public class Tui extends Thread implements IObserver {
 	}
 
 	private void printActivePlayerStats() {
-		System.out.printf("%-10sPoints: %d\n", controller.getActivePlayerName(), controller.getActivePlayerPoints());
+		System.out.printf("%-10sPoints: %d%n", controller.getActivePlayerName(), controller.getActivePlayerPoints());
 	}
 
 	private void printPlayerStats(int playerNumber) {
-		System.out.printf("%-10sPoints: %d\n", controller.getPlayerName(playerNumber),
+		System.out.printf("%-10sPoints: %d%n", controller.getPlayerName(playerNumber),
 				controller.getPlayerPoints(playerNumber));
 	}
 
@@ -86,7 +86,7 @@ public class Tui extends Thread implements IObserver {
 				System.out.printf("%-4s", controller.getField(i, j));
 			}
 
-			System.out.println("");
+			System.out.printf("%n");
 		}
 	}
 
