@@ -2,13 +2,13 @@ package de.htwg.se.memory.model.playingfield;
 
 import java.util.Random;
 
-public class Field implements Comparable<Field>{
+public class Field implements Comparable<Field> {
 	private static String hiddenText = "$$";
 	private String fieldId;
 	private String pathToPicture;
 	private boolean isVisible = false;
 	private boolean isGuessed = false;
-	
+
 	private int hashaddition;
 
 	public Field(String fieldId) {
@@ -18,7 +18,6 @@ public class Field implements Comparable<Field>{
 		this.hashaddition = rand.nextInt();
 	}
 
-	
 	public boolean isGuessed() {
 		return isGuessed;
 	}
@@ -27,48 +26,46 @@ public class Field implements Comparable<Field>{
 		this.isGuessed = isGuessed;
 	}
 
-	
 	public void setFieldId(String fieldId) {
 		this.fieldId = fieldId;
 	}
-	
+
 	public String getFieldId() {
 		return fieldId;
 	}
-	
-	public String getPathToPicture(){
+
+	public String getPathToPicture() {
 		return pathToPicture;
 	}
-	
-	public void setPathToPicture(String pathToPicture){
-		this.pathToPicture=pathToPicture;
+
+	public void setPathToPicture(String pathToPicture) {
+		this.pathToPicture = pathToPicture;
 	}
-	
-	public void setVisble(){
+
+	public void setVisble() {
 		isVisible = true;
 	}
-	
-	public void setHidden(){
+
+	public void setHidden() {
 		isVisible = false;
 	}
-	
+
 	public boolean isVisible() {
 		return isVisible;
 	}
-	
+
 	@Override
-	public String toString(){
-		if(isVisible){
+	public String toString() {
+		if (isVisible) {
 			return fieldId;
-		}
-		else{
-			if(isGuessed){
+		} else {
+			if (isGuessed) {
 				return "";
-			}else{
+			} else {
 				return hiddenText;
 			}
 		}
-		
+
 	}
 
 	@Override
@@ -78,19 +75,23 @@ public class Field implements Comparable<Field>{
 	}
 
 	@Override
-	public boolean equals(Object o){
+	public boolean equals(Object o) {
 		Field field;
 		try {
-		   field= (Field)o;
+			field = (Field) o;
 		} catch (Exception e) {
 			return false;
 		}
-		
-		return (compareTo(field) == 0);
+
+		if (compareTo(field) == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-	
+
 	@Override
-	public int hashCode(){
+	public int hashCode() {
 		return fieldId.hashCode() + pathToPicture.hashCode() + this.hashaddition;
 	}
 
