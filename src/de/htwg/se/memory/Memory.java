@@ -13,7 +13,7 @@ final class Memory {
 	public static void main(String[] args) {
 		
 		PropertyConfigurator.configure("log4j.properties");
-		Controller controller = new Controller();
+		Controller controller = Controller.getInstance();
 		Tui tui = new Tui(controller);
 		Gui gui = new Gui(controller);
 		controller.addObserver(tui);

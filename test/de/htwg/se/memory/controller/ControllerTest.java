@@ -16,7 +16,7 @@ public class ControllerTest {
 
 	@Before
 	public void setUp() {
-		controller = new Controller();
+		controller = Controller.getInstance();
 		controller.startGame(4, "player1Name", "player2Name");
 	}
 

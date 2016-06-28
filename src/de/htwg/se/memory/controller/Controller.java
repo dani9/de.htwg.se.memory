@@ -6,18 +6,24 @@ import de.htwg.se.memory.model.playingfield.PlayingField;
 import de.htwg.se.memory.util.observer.IObserver.Topic;
 import de.htwg.se.memory.util.observer.Observable;
 
-class Choice {
-	static int row, column;
-	
-	private Choice() {
 
-	}
-
-	
-}
 
 public class Controller extends Observable {
 
+	private static class Choice {
+		static int row, column;
+		
+		private Choice() {
+
+		}
+
+		
+	}
+	private static final class InstanceHolder {
+		static final Controller CONTROLLER = new Controller();
+	}
+	
+	
 	PlayingField playingField = null;
 
 	Player[] players = new Player[2];
@@ -25,8 +31,12 @@ public class Controller extends Observable {
 	int activePlayer = 0;
 	int turn = 0;
 
-	public Controller() {
+	private Controller() {
 
+	}
+	
+	public static Controller getInstance(){
+		return InstanceHolder.CONTROLLER;
 	}
 
 	public void startGame(int fieldSize, String player1Name, String player2Name) {
