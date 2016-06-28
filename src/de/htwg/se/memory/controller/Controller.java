@@ -1,8 +1,8 @@
 package de.htwg.se.memory.controller;
 
 import de.htwg.se.memory.model.player.*;
-import de.htwg.se.memory.model.playingField.Field;
-import de.htwg.se.memory.model.playingField.PlayingField;
+import de.htwg.se.memory.model.playingfield.Field;
+import de.htwg.se.memory.model.playingfield.PlayingField;
 import de.htwg.se.memory.util.observer.IObserver.Topic;
 import de.htwg.se.memory.util.observer.Observable;
 

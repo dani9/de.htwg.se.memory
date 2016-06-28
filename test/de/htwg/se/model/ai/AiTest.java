@@ -1,13 +1,12 @@
 package de.htwg.se.model.ai;
 import static org.junit.Assert.assertEquals;
 import de.htwg.se.memory.model.player.Ai;
+import de.htwg.se.memory.model.playingfield.Field;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import de.htwg.se.memory.controller.Controller;
-
-import de.htwg.se.memory.model.playingField.Field;
 import junit.framework.TestCase;
 public class AiTest {
 	

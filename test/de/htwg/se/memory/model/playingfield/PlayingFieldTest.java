@@ -1,10 +1,10 @@
 
-package de.htwg.se.memory.model.playingField;
+package de.htwg.se.memory.model.playingfield;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.se.memory.model.playingField.Field;
-import de.htwg.se.memory.model.playingField.PlayingField;
+import de.htwg.se.memory.model.playingfield.Field;
+import de.htwg.se.memory.model.playingfield.PlayingField;
 import junit.framework.TestCase;
 public class PlayingFieldTest extends TestCase{
 	

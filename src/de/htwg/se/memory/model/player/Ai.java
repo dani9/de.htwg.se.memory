@@ -4,7 +4,7 @@ package de.htwg.se.memory.model.player;
 import java.util.LinkedList;
 
 import de.htwg.se.memory.controller.Controller;
-import de.htwg.se.memory.model.playingField.Field;
+import de.htwg.se.memory.model.playingfield.Field;
 
 class FieldWithCordinate{
 	
