@@ -12,8 +12,6 @@ public class Field implements Comparable<Field>{
 	private boolean isGuessed = false;
 	
 	private int hashaddition;
-
-	private static final Logger LOGGER = Logger.getLogger("de.htwg.se.memory.model.playingfield");
 	
 	public Field(String fieldId) {
 		this.fieldId = fieldId;
