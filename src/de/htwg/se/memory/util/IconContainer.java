@@ -24,8 +24,8 @@ public class IconContainer implements Serializable {
 	private static IconContainer instance = null;
 	private Map<String, ImageIcon> images;
 
-	private final int additionalIcons = 77;
-	public final static int CARD_BACK = 0;
+	private static final int additionalIcons = 77;
+	public static final int CARD_BACK = 0;
 	public static final int DONE = 1;
 	public static final int BLOCK = 2;
 	public static final int CANCEL = 3;
@@ -103,26 +103,26 @@ public class IconContainer implements Serializable {
 	public static final int PLAY_PAUSE = 75;
 	public static final int FILE_JAVA = 76;
 
-	private final int cardcolor = 4;
-	public final static int SPADE = 100;
-	public final static int CLUB = 200;
-	public final static int HEART = 300;
-	public final static int DIAMOND = 400;
+	private static final int cardcolor = 4;
+	public static final  int SPADE = 100;
+	public static final int CLUB = 200;
+	public static final int HEART = 300;
+	public static final int DIAMOND = 400;
 
-	private final int cardvalue = 13;
-	public final static int KING = 0;
-	public final static int ACE = 1;
-	public final static int TWO = 2;
-	public final static int THREE = 3;
-	public final static int FOUR = 4;
-	public final static int FIVE = 5;
-	public final static int SIX = 6;
-	public final static int SEVEN = 7;
-	public final static int EIGHT = 8;
-	public final static int NINE = 9;
-	public final static int TEN = 10;
-	public final static int QUEEN = 11;
-	public final static int JACK = 12;
+	private static final int cardvalue = 13;
+	public static final int KING = 0;
+	public static final int ACE = 1;
+	public static final int TWO = 2;
+	public static final int THREE = 3;
+	public static final int FOUR = 4;
+	public static final int FIVE = 5;
+	public static final int SIX = 6;
+	public static final int SEVEN = 7;
+	public static final int EIGHT = 8;
+	public static final int NINE = 9;
+	public static final int TEN = 10;
+	public static final int QUEEN = 11;
+	public static final int JACK = 12;
 
 	private IconContainer() {
 
