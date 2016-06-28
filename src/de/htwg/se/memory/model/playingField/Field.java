@@ -74,7 +74,22 @@ public class Field implements Comparable<Field>{
 
 	}
 
-
+	@Override
+	public boolean equals(Object o){
+		Field field;
+		try {
+		   field= (Field)o;
+		} catch (Exception e) {
+			return false;
+		}
+		
+		if(compareTo(field) == 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	
 
 }

@@ -10,6 +10,7 @@ import junit.framework.TestCase;
 public class FieldTest extends TestCase{
 	
 	Field field, field1, field2;
+	String testobject;
 	@Before
 	public void setUp(){
 		field = new Field("Hallo");
@@ -17,6 +18,8 @@ public class FieldTest extends TestCase{
 		field1 = new Field("12");
 		field1.setFieldId("12df");
 		field2 = new Field("Hallo");
+		testobject = new String("test");
+		
 	}
 
 	@Test
@@ -40,7 +43,13 @@ public class FieldTest extends TestCase{
 
 	@Test
 	public void testEquals(){
-		assertEquals(field.compareTo(field2), field.compareTo(field2));
+		assertEquals(field.compareTo(field2), 0);
+		
+		assertTrue(field.equals(field2));
+		
+		assertFalse(field.equals(field1));
+		
+		assertFalse(field.equals(testobject));
 	}
 	
 	@Test
