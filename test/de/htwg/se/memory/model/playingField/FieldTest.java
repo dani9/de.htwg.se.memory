@@ -66,8 +66,11 @@ public class FieldTest extends TestCase{
 		field.setGuessed(false);
 		assertFalse(field.isGuessed());
 		
+		
+		
 		field.setGuessed(true);
 		assertTrue(field.isGuessed());
+		assertEquals(field.toString(), "");
 	}
 	
 }
