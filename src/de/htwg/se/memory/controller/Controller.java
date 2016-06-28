@@ -7,18 +7,20 @@ import de.htwg.se.memory.util.observer.IObserver.Topic;
 import de.htwg.se.memory.util.observer.Observable;
 
 class Choice {
+	static int row, column;
+	
 	private Choice() {
 
 	}
 
-	static int row, column;
+	
 }
 
 public class Controller extends Observable {
 
 	PlayingField playingField = null;
 
-	Player players[] = new Player[2];
+	Player[] players = new Player[2];
 
 	int activePlayer = 0;
 	int turn = 0;
@@ -92,8 +94,7 @@ public class Controller extends Observable {
 	}
 
 	public Field getField(int row, int column) {
-		Field field = playingField.getField(row, column);
-		return field;
+		return playingField.getField(row, column);
 	}
 
 	public PlayingField getPlayingField() {
@@ -118,7 +119,7 @@ public class Controller extends Observable {
 			getField(Choice.row, Choice.column).setGuessed(true);
 			players[activePlayer].addPoint();
 
-			if (playingField.isAllGeuessed() == true) {
+			if (playingField.isAllGeuessed()) {
 				notifyObservers(Topic.GAME_FINISHED);
 				return;
 			} else {
