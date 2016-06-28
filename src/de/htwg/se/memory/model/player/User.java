@@ -13,10 +13,9 @@ public class User implements Serializable, Player{
 	private int points;
 	private Controller controller;
 
-	public User(String name, String nickname, Controller controller) {
+	public User(String name, String nickname) {
 		this.name = name;
 		this.nickname = nickname;
-		this.controller = controller;
 	}
 
 	@Override
@@ -37,11 +36,6 @@ public class User implements Serializable, Player{
 		this.points = points;
 	}
 
-	@Override
-	public void getChoice() {
-		controller.notifyObservers(Topic.WAIT_FOR_CHOICE);
-		
-	}
 	
 	@Override
 	public void addPoint() {

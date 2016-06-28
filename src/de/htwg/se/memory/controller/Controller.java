@@ -30,8 +30,8 @@ public class Controller extends Observable {
 	}
 
 	public void startGame(int fieldSize, String player1Name, String player2Name) {
-		Player player1 = new User(player1Name, player1Name, this);
-		Player player2 = new User(player2Name, player2Name, this);
+		Player player1 = new User(player1Name, player1Name);
+		Player player2 = new User(player2Name, player2Name);
 		startGame(fieldSize, player1, player2);
 	}
 
@@ -86,7 +86,7 @@ public class Controller extends Observable {
 	}
 
 	public void getChoice() {
-		players[activePlayer].getChoice();
+		waitForChoice();
 	}
 
 	public int getTurn() {
