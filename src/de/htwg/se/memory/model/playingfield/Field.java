@@ -85,8 +85,7 @@ public class Field implements Comparable<Field>{
 		} catch (Exception e) {
 			return false;
 		}
-		boolean returnvalue = compareTo(field) == 0;
-		return returnvalue;
+		return compareTo(field) == 0;
 	}
 	
 	@Override
