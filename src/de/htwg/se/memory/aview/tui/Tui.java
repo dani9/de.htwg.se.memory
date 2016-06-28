@@ -46,7 +46,6 @@ public class Tui extends Thread implements IObserver {
 		case GAME_FINISHED:
 
 			updateGameFinished();
-			LOGGER.info("Enter two usernames and a field size %s %s %i");
 			break;
 
 		case GAME_INIT:
@@ -64,6 +63,7 @@ public class Tui extends Thread implements IObserver {
 		LOGGER.info("GAME FINISHED");
 		printPlayerStats(1);
 		printPlayerStats(2);
+		LOGGER.info("Enter two usernames and a field size %s %s %i");
 	}
 
 	private void updateWaitForChoice() {
@@ -83,14 +83,14 @@ public class Tui extends Thread implements IObserver {
 
 	private void printActivePlayerStats() {
 		String output = "";
-		output += String.format("%-10sPoints: %d%n", controller.getActivePlayerName(), controller.getActivePlayerPoints());
+		output += String.format("%-10sPoints: %d", controller.getActivePlayerName(), controller.getActivePlayerPoints());
 		LOGGER.info(output);
 	}
 
 	private void printPlayerStats(int playerNumber) {
 		String output = "";
 		
-		output += String.format("%-10sPoints: %d%n", controller.getPlayerName(playerNumber),
+		output += String.format("%-10sPoints: %d", controller.getPlayerName(playerNumber),
 				controller.getPlayerPoints(playerNumber));
 		
 		LOGGER.info(output);
