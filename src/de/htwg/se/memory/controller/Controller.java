@@ -8,8 +8,9 @@ import de.htwg.se.memory.util.observer.Observable;
 
 class Choice {
 	private Choice() {
-		
+
 	}
+
 	static int row, column;
 }
 
@@ -43,12 +44,6 @@ public class Controller extends Observable {
 
 		notifyObservers(Topic.NEW_GAME_STARTED);
 
-		// try {
-		// Thread.sleep(1000);
-		// } catch (InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
 		getChoice();
 	}
 
@@ -80,12 +75,6 @@ public class Controller extends Observable {
 		playingField.hideAll();
 		notifyObservers(Topic.NEXT_PLAYER);
 
-		// try {
-		// Thread.sleep(1000);
-		// } catch (InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
 		getChoice();
 	}
 
@@ -124,20 +113,18 @@ public class Controller extends Observable {
 		}
 		field.setVisble();
 
-		if (turn == 1) {
-			if (field.compareTo(getField(Choice.row, Choice.column)) == 0) {
-				field.setGuessed(true);
-				getField(Choice.row, Choice.column).setGuessed(true);
-				players[activePlayer].addPoint();
+		if (turn == 1 && field.compareTo(getField(Choice.row, Choice.column)) == 0) {
+			field.setGuessed(true);
+			getField(Choice.row, Choice.column).setGuessed(true);
+			players[activePlayer].addPoint();
 
-				if (playingField.isAllGeuessed() == true) {
-					notifyObservers(Topic.GAME_FINISHED);
-					return;
-				} else {
-					turn = 0;
-					notifyObservers(Topic.WAIT_FOR_CHOICE);
-					return;
-				}
+			if (playingField.isAllGeuessed() == true) {
+				notifyObservers(Topic.GAME_FINISHED);
+				return;
+			} else {
+				turn = 0;
+				notifyObservers(Topic.WAIT_FOR_CHOICE);
+				return;
 			}
 		}
 
