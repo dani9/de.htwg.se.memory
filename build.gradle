@@ -53,7 +53,7 @@ jar {
 sonarqube {
     properties {
     
-    property "sonar.coverage.exclusions", " '*aview*' "
+    property "sonar.exclusions", " '*aview*' "
     property "sonar.projectName", "SE2014SS-04-Memory"
     property "sonar.projectKey", "de.htwg.se.memory"
     property "sonar.projectVersion", "1.0"
