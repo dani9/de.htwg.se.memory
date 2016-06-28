@@ -121,11 +121,9 @@ public class Tui extends Thread implements IObserver {
 
 		while (true) {
 			String readed = "";
-			try {
-				readed = scanner.nextLine();
-			} catch (Exception e) {
-				break;
-			}
+			
+			readed = scanner.nextLine();
+			
 
 
 			switch (state) {
