@@ -86,10 +86,7 @@ public class Field implements Comparable<Field>{
 		Field field;
 		try {
 		   field= (Field)o;
-		}catch (ClassCastException e) {
-			return false;
-		}catch (Exception e){
-			LOGGER.fatal(e);
+		}catch (Exception e) {
 			return false;
 		}
 		return compareTo(field) == 0;
