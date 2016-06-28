@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class PlayingField {
-	private Field matrix[][];
+	private Field[][] matrix;
 	
 	public PlayingField(int column){
 		if(column % 2 == 0){
