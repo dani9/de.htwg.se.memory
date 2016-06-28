@@ -1,8 +1,6 @@
 package de.htwg.se.memory.model.player;
 import java.io.Serializable;
 
-import de.htwg.se.memory.controller.Controller;
-import de.htwg.se.memory.util.observer.IObserver.Topic;
 
 public class User implements Serializable, Player{
 	
@@ -11,8 +9,6 @@ public class User implements Serializable, Player{
 	private String name;
 	private String nickname;
 	private int points;
-	private Controller controller;
-
 	public User(String name, String nickname) {
 		this.name = name;
 		this.nickname = nickname;
