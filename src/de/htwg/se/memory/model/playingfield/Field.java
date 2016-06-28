@@ -2,8 +2,6 @@ package de.htwg.se.memory.model.playingfield;
 
 import java.util.Random;
 
-import org.apache.log4j.Logger;
-
 public class Field implements Comparable<Field>{
 	private static String hiddenText = "$$";
 	private String fieldId;
