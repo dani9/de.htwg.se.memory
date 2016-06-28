@@ -1,6 +1,5 @@
 package de.htwg.se.memory.aview.tui;
 
-import java.text.Format;
 import java.util.Scanner;
 import de.htwg.se.memory.controller.Controller;
 import de.htwg.se.memory.util.observer.IObserver;
@@ -47,6 +46,8 @@ public class Tui extends Thread implements IObserver {
 		case GAME_FINISHED:
 
 			updateGameFinished();
+			LOGGER.info("Enter two usernames and a field size %s %s %i");
+			break;
 
 		case GAME_INIT:
 			LOGGER.info("Enter two usernames and a field size %s %s %i");
@@ -143,9 +144,9 @@ public class Tui extends Thread implements IObserver {
 				controller.nextPlayer();
 				break;
 			case GAME_FINISHED:
-
+				readGameInit(readed);
+				break;
 			case GAME_INIT:
-
 				readGameInit(readed);
 				break;
 			default:
