@@ -1,11 +1,15 @@
 package de.htwg.se.memory.aview.tui;
 
+import java.text.Format;
 import java.util.Scanner;
 import de.htwg.se.memory.controller.Controller;
 import de.htwg.se.memory.util.observer.IObserver;
 
+import org.apache.log4j.Logger;
 public class Tui extends Thread implements IObserver {
 
+	private static final Logger LOGGER = Logger.getLogger("de.htwg.se.memory.aview.tui");
+	
 	private Controller controller;
 	
 	private Topic state;
@@ -22,7 +26,7 @@ public class Tui extends Thread implements IObserver {
 	@Override
 	public void update(Topic topic) {
 
-		System.out.printf("%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n");
+		LOGGER.info(String.format("%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n"));
 		state = topic;
 
 		switch (state) {
@@ -45,7 +49,7 @@ public class Tui extends Thread implements IObserver {
 			updateGameFinished();
 
 		case GAME_INIT:
-			System.out.println("Enter two usernames and a field size %s %s %i");
+			LOGGER.info("Enter two usernames and a field size %s %s %i");
 
 			break;
 
@@ -56,19 +60,19 @@ public class Tui extends Thread implements IObserver {
 	}
 
 	private void updateGameFinished() {
-		System.out.println("GAME FINISHED");
+		LOGGER.info("GAME FINISHED");
 		printPlayerStats(1);
 		printPlayerStats(2);
 	}
 
 	private void updateWaitForChoice() {
 		updateNewGameStartet();
-		System.out.println("chose row an collum z.B.\"3 2\" ");
+		LOGGER.info("chose row an collum z.B.\"3 2\" ");
 	}
 
 	private void updateWaitForNextPlayer() {
 		updateNewGameStartet();
-		System.out.println(controller.getActivePlayerName() + " press Enter to begin.");
+		LOGGER.info(controller.getActivePlayerName() + " press Enter to begin.");
 	}
 
 	private void updateNewGameStartet() {
@@ -77,29 +81,37 @@ public class Tui extends Thread implements IObserver {
 	}
 
 	private void printActivePlayerStats() {
-		System.out.printf("%-10sPoints: %d%n", controller.getActivePlayerName(), controller.getActivePlayerPoints());
+		String output = "";
+		output += String.format("%-10sPoints: %d%n", controller.getActivePlayerName(), controller.getActivePlayerPoints());
+		LOGGER.info(output);
 	}
 
 	private void printPlayerStats(int playerNumber) {
-		System.out.printf("%-10sPoints: %d%n", controller.getPlayerName(playerNumber),
+		String output = "";
+		
+		output += String.format("%-10sPoints: %d%n", controller.getPlayerName(playerNumber),
 				controller.getPlayerPoints(playerNumber));
+		
+		LOGGER.info(output);
 	}
 
 	private void printPlayingField() {
 		int fieldSize = controller.getPlayFieldSize();
-		System.out.printf("%-4s", "");
+		String output = String.format("%n");
+		output += String.format("%-4s", "");
 		for (int i = 0; i < fieldSize; ++i) {
-			System.out.printf("%-4d", i);
+			output += String.format("%-4d", i);
 		}
-		System.out.println("");
+		output += String.format("%n");
 		for (int i = 0; i < fieldSize; ++i) {
-			System.out.printf("%-4d", i);
+			output += String.format("%-4d", i);
 			for (int j = 0; j < fieldSize; ++j) {
-				System.out.printf("%-4s", controller.getField(i, j));
+				output += String.format("%-4s", controller.getField(i, j));
 			}
 
-			System.out.printf("%n");
+			output += String.format("%n");
 		}
+		LOGGER.info(output);
 	}
 
 	private void readInput() {
