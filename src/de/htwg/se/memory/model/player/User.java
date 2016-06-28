@@ -2,6 +2,7 @@ package de.htwg.se.memory.model.player;
 import java.io.Serializable;
 
 import de.htwg.se.memory.controller.Controller;
+import de.htwg.se.memory.util.observer.IObserver.Topic;
 
 public class User implements Serializable, Player{
 	
@@ -38,7 +39,7 @@ public class User implements Serializable, Player{
 
 	@Override
 	public void getChoice() {
-		controller.waitForChoice();
+		controller.notifyObservers(Topic.WAIT_FOR_CHOICE);
 		
 	}
 	
