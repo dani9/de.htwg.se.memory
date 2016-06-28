@@ -14,8 +14,6 @@ public class Tui extends Thread implements IObserver {
 		this.start();
 	}
 
-	;
-
 	@Override
 	public void run() {
 		readInput();
@@ -32,26 +30,19 @@ public class Tui extends Thread implements IObserver {
 		case CHOICE_WAS_MADE:
 		case NEXT_PLAYER:
 		case NEW_GAME_STARTED:
-			printActivePlayerStats();
-			printPlayingField();
+			updateNewGameStartet();
 			break;
 		case WAIT_FOR_NEXT_PLAYER:
-			printActivePlayerStats();
-			printPlayingField();
-			System.out.println(controller.getActivePlayerName() + " press Enter to begin.");
+			updateWaitForNextPlayer();
 			break;
 
 		case WAIT_FOR_CHOICE:
-			printActivePlayerStats();
-			printPlayingField();
-			System.out.println("chose row an collum z.B.\"3 2\" ");
+			updateWaitForChoice();
 			break;
 
 		case GAME_FINISHED:
 
-			System.out.println("GAME FINISHED");
-			printPlayerStats(1);
-			printPlayerStats(2);
+			updateGameFinished();
 
 		case GAME_INIT:
 			System.out.println("Enter two usernames and a field size %s %s %i");
@@ -62,6 +53,27 @@ public class Tui extends Thread implements IObserver {
 			break;
 		}
 
+	}
+
+	private void updateGameFinished() {
+		System.out.println("GAME FINISHED");
+		printPlayerStats(1);
+		printPlayerStats(2);
+	}
+
+	private void updateWaitForChoice() {
+		updateNewGameStartet();
+		System.out.println("chose row an collum z.B.\"3 2\" ");
+	}
+
+	private void updateWaitForNextPlayer() {
+		updateNewGameStartet();
+		System.out.println(controller.getActivePlayerName() + " press Enter to begin.");
+	}
+
+	private void updateNewGameStartet() {
+		printActivePlayerStats();
+		printPlayingField();
 	}
 
 	private void printActivePlayerStats() {
@@ -105,12 +117,7 @@ public class Tui extends Thread implements IObserver {
 
 			switch (state) {
 			case WAIT_FOR_CHOICE:
-				if (readed.trim().split(" ").length == 2) {
-					int row = Integer.parseInt(readed.trim().split(" ")[0]);
-					int column = Integer.parseInt(readed.trim().split(" ")[1]);
-
-					controller.setChoice(row, column);
-				}
+				readWaitForChoice(readed);
 				break;
 
 			case CHOICE_WAS_MADE:
@@ -127,17 +134,30 @@ public class Tui extends Thread implements IObserver {
 
 			case GAME_INIT:
 
-				if (readed.trim().split(" ").length == 3) {
-					String player1Name = readed.trim().split(" ")[0];
-					String player2Name = readed.trim().split(" ")[1];
-					int fieldSize = Integer.parseInt(readed.trim().split(" ")[2]);
-
-					controller.startGame(fieldSize, player1Name, player2Name);
-				}
+				readGameInit(readed);
 				break;
 			default:
 				break;
 			}
+		}
+	}
+
+	private void readGameInit(String readed) {
+		if (readed.trim().split(" ").length == 3) {
+			String player1Name = readed.trim().split(" ")[0];
+			String player2Name = readed.trim().split(" ")[1];
+			int fieldSize = Integer.parseInt(readed.trim().split(" ")[2]);
+
+			controller.startGame(fieldSize, player1Name, player2Name);
+		}
+	}
+
+	private void readWaitForChoice(String readed) {
+		if (readed.trim().split(" ").length == 2) {
+			int row = Integer.parseInt(readed.trim().split(" ")[0]);
+			int column = Integer.parseInt(readed.trim().split(" ")[1]);
+
+			controller.setChoice(row, column);
 		}
 	}
 

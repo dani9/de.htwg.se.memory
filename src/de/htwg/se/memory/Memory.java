@@ -6,6 +6,9 @@ import de.htwg.se.memory.controller.Controller;
 import de.htwg.se.memory.util.observer.IObserver.Topic;
 
 final class Memory {
+	private Memory() {
+		
+	}
  
 	public static void main(String[] args) {
 		Controller controller = new Controller();
