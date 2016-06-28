@@ -7,6 +7,9 @@ import de.htwg.se.memory.util.observer.IObserver.Topic;
 import de.htwg.se.memory.util.observer.Observable;
 
 class Choice {
+	private Choice() {
+		
+	}
 	static int row, column;
 }
 
