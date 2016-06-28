@@ -1,6 +1,7 @@
 package de.htwg.se.memory.model.playingField;
 
-
+import java.time.chrono.JapaneseChronology;
+import java.util.Random;
 
 public class Field implements Comparable<Field>{
 	private static String hiddenText = "$$";
@@ -9,7 +10,7 @@ public class Field implements Comparable<Field>{
 	private boolean isVisible = false;
 	private boolean isGuessed = false;
 	
-
+	private int hashaddition;
 
 	
 	
@@ -23,6 +24,9 @@ public class Field implements Comparable<Field>{
 
 	public Field(String fieldId) {
 		this.fieldId = fieldId;
+		Random rand = new Random(120912);
+		this.pathToPicture = "";
+		this.hashaddition = rand.nextInt();
 	}
 
 	public void setFieldId(String fieldId) {
@@ -91,5 +95,9 @@ public class Field implements Comparable<Field>{
 		}
 	}
 	
+	@Override
+	public int hashCode(){
+		return fieldId.hashCode() + pathToPicture.hashCode() + this.hashaddition;
+	}
 
 }

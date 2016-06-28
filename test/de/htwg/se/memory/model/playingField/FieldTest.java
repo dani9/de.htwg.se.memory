@@ -50,6 +50,8 @@ public class FieldTest extends TestCase{
 		assertFalse(field.equals(field1));
 		
 		assertFalse(field.equals(testobject));
+		
+		assertNotEquals(field.hashCode(),field2.hashCode());
 	}
 	
 	@Test
