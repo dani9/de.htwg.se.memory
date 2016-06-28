@@ -1,6 +1,7 @@
 package de.htwg.se.memory.model.playingfield;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class PlayingField {
 	private Field matrix[][];
@@ -20,7 +21,7 @@ public class PlayingField {
 
 		
 	private void fillMatrix(){
-		LinkedList<Field> list=new LinkedList<Field>();
+		List<Field> list=new LinkedList<Field>();
 			
 		for (int i = 0; i < ((getColumn()*getColumn())/2); i++) {
 			Field tmp= new Field(Integer.toString(i));
@@ -32,8 +33,8 @@ public class PlayingField {
 			
 		for(int x =0; x < getColumn(); ++x){
 			  for(int y =0; y < getColumn(); ++y){
-					matrix[x][y] =list.getFirst();
-					list.removeFirst();
+					matrix[x][y] =list.get(0);
+					list.remove(0);
 			  	}
 		  }
 	}
@@ -91,7 +92,7 @@ public class PlayingField {
 		 for(int x =0; x < getColumn(); ++x){
 			  for(int y =0; y < getColumn(); ++y){
 				  
-				  if(getField(x, y).isGuessed() == false){
+				  if(!getField(x, y).isGuessed()){
 					  return false;
 				  }
 			  	}
