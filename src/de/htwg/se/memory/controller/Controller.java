@@ -12,12 +12,6 @@ public class Controller extends Observable {
 
 	private static class Choice {
 		static int row, column;
-		
-		private Choice() {
-
-		}
-
-		
 	}
 	private static final class InstanceHolder {
 		static final Controller CONTROLLER = new Controller();
