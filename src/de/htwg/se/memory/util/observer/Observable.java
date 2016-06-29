@@ -3,13 +3,14 @@ package de.htwg.se.memory.util.observer;
 
 
 import java.util.HashSet;
+import java.util.Set;
 
 import de.htwg.se.memory.util.observer.IObserver.Topic;
 
 
 public class Observable {
 
-	HashSet<IObserver> observers = new HashSet<IObserver>();
+	Set<IObserver> observers = new HashSet<IObserver>();
 	
 	public void addObserver(IObserver observer) {
 		this.observers.add(observer);
