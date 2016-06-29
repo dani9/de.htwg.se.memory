@@ -9,11 +9,14 @@ import javax.swing.GrayFilter;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+import org.apache.log4j.Logger;
+
 public class IconContainer implements Serializable {
 
 	/**
 	 * 
 	 */
+	private static final Logger LOGGER = Logger.getLogger("de.htwg.se.memory.util");
 	private static final long serialVersionUID = 1427131171238925111L;
 	private static final String SEPARATOR = System
 			.getProperty("file.separator");
@@ -24,7 +27,7 @@ public class IconContainer implements Serializable {
 	private static IconContainer instance = null;
 	private Map<String, ImageIcon> images;
 
-	private static final int additionalIcons = 77;
+	private static final int ADDITIONALICONS = 77;
 	public static final int CARD_BACK = 0;
 	public static final int DONE = 1;
 	public static final int BLOCK = 2;
@@ -103,13 +106,13 @@ public class IconContainer implements Serializable {
 	public static final int PLAY_PAUSE = 75;
 	public static final int FILE_JAVA = 76;
 
-	private static final int cardcolor = 4;
+	private static final int CARDCOLOR = 4;
 	public static final  int SPADE = 100;
 	public static final int CLUB = 200;
 	public static final int HEART = 300;
 	public static final int DIAMOND = 400;
 
-	private static final int cardvalue = 13;
+	private static final int CARDVALUE = 13;
 	public static final int KING = 0;
 	public static final int ACE = 1;
 	public static final int TWO = 2;
@@ -128,15 +131,15 @@ public class IconContainer implements Serializable {
 
 		images = new HashMap<String, ImageIcon>();
 
-		for (int i = 1; i < cardcolor+1; i++) {
-			for (int j = 0; j < cardvalue; j++) {
+		for (int i = 1; i < CARDCOLOR+1; i++) {
+			for (int j = 0; j < CARDVALUE; j++) {
 				ImageIcon img = new ImageIcon(PICTUREPATH
 						+ new Integer((i * 100) + j) + ".png");
 				images.put("PIC" + new Integer((i * 100) + j), img);
 			}
 		}
 
-		for (int i = 0; i < additionalIcons; i++) {
+		for (int i = 0; i < ADDITIONALICONS; i++) {
 			ImageIcon img = new ImageIcon(PICTUREPATH + i + ".png");
 			images.put("PIC" + new Integer(i), img);
 		}
@@ -149,14 +152,13 @@ public class IconContainer implements Serializable {
 			try {
 				storage = new Storage();
 			} catch (Exception e) {
-				// TODO
-				e.printStackTrace();
+				LOGGER.error(e);
 			}
 			instance = (IconContainer) storage.loadSerializable(PICTUREPATH
 					+ "icons.if","pic");
 			if (instance == null) {
 				instance = new IconContainer();
-				System.out.println(instance.images.keySet());
+				LOGGER.debug(instance.images.keySet());
 				storage.saveSerializable(instance, PICTUREPATH + "icons.if","pic");
 			}
 		}
