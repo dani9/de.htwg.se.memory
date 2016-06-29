@@ -2,6 +2,8 @@ package de.htwg.se.memory.model.playingfield;
 
 import java.util.Random;
 
+import org.apache.log4j.Logger;
+
 public class Field implements Comparable<Field>{
 	private static String hiddenText = "$$";
 	private String fieldId;
@@ -10,6 +12,8 @@ public class Field implements Comparable<Field>{
 	private boolean isGuessed = false;
 	
 	private int hashaddition;
+	
+	private static final Logger LOGGER = Logger.getLogger("de.htwg.se.memory.model.playingfield");
 	
 	public Field(String fieldId) {
 		this.fieldId = fieldId;
@@ -83,6 +87,7 @@ public class Field implements Comparable<Field>{
 		try {
 		   field= (Field)o;
 		}catch (Exception e) {
+			LOGGER.error(e);
 			return false;
 		}
 		return compareTo(field) == 0;
