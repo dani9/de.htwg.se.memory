@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.GrayFilter;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -18,16 +17,14 @@ public class IconContainer implements Serializable {
 	 */
 	private static final Logger LOGGER = Logger.getLogger("de.htwg.se.memory.util");
 	private static final long serialVersionUID = 1427131171238925111L;
-	private static final String SEPARATOR = System
-			.getProperty("file.separator");
-	private static final String WORKINGDIR = System.getProperty("user.dir")
-			+ SEPARATOR;
+	private static final String SEPARATOR = System.getProperty("file.separator");
+	private static final String WORKINGDIR = System.getProperty("user.dir") + SEPARATOR;
 	public static final String PICTUREPATH = WORKINGDIR + "picture" + SEPARATOR;
 
 	private static IconContainer instance = null;
 	private Map<String, ImageIcon> images;
 
-	private static final int ADDITIONALICONS = 77;
+	public static final int ADDITIONALICONS = 77;
 	public static final int CARD_BACK = 0;
 	public static final int DONE = 1;
 	public static final int BLOCK = 2;
@@ -107,7 +104,7 @@ public class IconContainer implements Serializable {
 	public static final int FILE_JAVA = 76;
 
 	private static final int CARDCOLOR = 4;
-	public static final  int SPADE = 100;
+	public static final int SPADE = 100;
 	public static final int CLUB = 200;
 	public static final int HEART = 300;
 	public static final int DIAMOND = 400;
@@ -131,10 +128,9 @@ public class IconContainer implements Serializable {
 
 		images = new HashMap<String, ImageIcon>();
 
-		for (int i = 1; i < CARDCOLOR+1; i++) {
+		for (int i = 1; i < CARDCOLOR + 1; i++) {
 			for (int j = 0; j < CARDVALUE; j++) {
-				ImageIcon img = new ImageIcon(PICTUREPATH
-						+ new Integer((i * 100) + j) + ".png");
+				ImageIcon img = new ImageIcon(PICTUREPATH + new Integer((i * 100) + j) + ".png");
 				images.put("PIC" + new Integer((i * 100) + j), img);
 			}
 		}
@@ -154,12 +150,11 @@ public class IconContainer implements Serializable {
 			} catch (Exception e) {
 				LOGGER.error(e);
 			}
-			instance = (IconContainer) storage.loadSerializable(PICTUREPATH
-					+ "icons.if","pic");
+			instance = (IconContainer) storage.loadSerializable(PICTUREPATH + "icons.if", "pic");
 			if (instance == null) {
 				instance = new IconContainer();
 				LOGGER.debug(instance.images.keySet());
-				storage.saveSerializable(instance, PICTUREPATH + "icons.if","pic");
+				storage.saveSerializable(instance, PICTUREPATH + "icons.if", "pic");
 			}
 		}
 		return instance;
@@ -170,41 +165,14 @@ public class IconContainer implements Serializable {
 		return scale(20, 20, icon);
 	}
 
-	public Image getImage(String selectedIcon) {
-		return images.get(selectedIcon).getImage();
-	}
-
-	public Icon getIcon(String selectedIcon, boolean gray) {
-		Icon icon = new ImageIcon(images.get(selectedIcon).getImage());
-		if (gray) {
-			return grayIcon(scale(20, 20, icon));
-		}
-		return scale(20, 20, icon);
-	}
-
 	public Icon getIcon(String selectedIcon, int width, int height) {
 		Icon icon = new ImageIcon(images.get(selectedIcon).getImage());
 		return scale(width, height, icon);
 	}
 
-	public Icon getIcon(String selectedIcon, int width, int height, boolean gray) {
-		Icon icon = new ImageIcon(images.get(selectedIcon).getImage());
-		if (gray) {
-			return grayIcon(scale(width, height, icon));
-		}
-		return scale(width, height, icon);
-	}
-
 	private Icon scale(int width, int height, Icon icon) {
 		Image img = ((ImageIcon) icon).getImage();
-		return new ImageIcon(img.getScaledInstance(width, height,
-				java.awt.Image.SCALE_SMOOTH));
-	}
-
-	private Icon grayIcon(Icon icon) {
-		Image img = ((ImageIcon) icon).getImage();
-		img = GrayFilter.createDisabledImage(img);
-		return new ImageIcon(img);
+		return new ImageIcon(img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH));
 	}
 
 }
