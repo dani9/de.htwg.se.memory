@@ -2,7 +2,6 @@ package de.htwg.se.memory.controller;
 
 import static org.junit.Assert.*;
 
-import org.apache.log4j.pattern.FileDatePatternConverter;
 import org.junit.Before;
 import org.junit.Test;
 

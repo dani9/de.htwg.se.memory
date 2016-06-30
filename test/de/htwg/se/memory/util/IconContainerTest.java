@@ -21,7 +21,6 @@ public class IconContainerTest {
 		
 		
 		IconContainer container = IconContainer.getInstance();
-		System.out.println(container);
 
 		assertNotNull(container);
 
