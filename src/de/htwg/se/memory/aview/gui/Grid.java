@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import de.htwg.se.memory.controller.Controller;
-import de.htwg.se.memory.model.playingField.Field;
+import de.htwg.se.memory.model.playingfield.Field;
 import de.htwg.se.memory.util.IconContainer;
 import de.htwg.se.memory.util.observer.IObserver.Topic;
 

@@ -1,15 +1,16 @@
-package de.htwg.se.memory.model.playingField;
+package de.htwg.se.memory.model.playingfield;
 import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.se.memory.model.playingField.Field;
+import de.htwg.se.memory.model.playingfield.Field;
 import junit.framework.TestCase;
 
 public class FieldTest extends TestCase{
 	
 	Field field, field1, field2;
+	String testobject;
 	@Before
 	public void setUp(){
 		field = new Field("Hallo");
@@ -17,6 +18,8 @@ public class FieldTest extends TestCase{
 		field1 = new Field("12");
 		field1.setFieldId("12df");
 		field2 = new Field("Hallo");
+		testobject = new String("test");
+		
 	}
 
 	@Test
@@ -40,7 +43,15 @@ public class FieldTest extends TestCase{
 
 	@Test
 	public void testEquals(){
-		assertEquals(field.compareTo(field2), field.compareTo(field2));
+		assertEquals(field.compareTo(field2), 0);
+		
+		assertTrue(field.equals(field2));
+		
+		assertFalse(field.equals(field1));
+		
+		assertFalse(field.equals(testobject));
+		
+		assertNotEquals(field.hashCode(),field2.hashCode());
 	}
 	
 	@Test
@@ -66,8 +77,11 @@ public class FieldTest extends TestCase{
 		field.setGuessed(false);
 		assertFalse(field.isGuessed());
 		
+		
+		
 		field.setGuessed(true);
 		assertTrue(field.isGuessed());
+		assertEquals(field.toString(), "");
 	}
 	
 }

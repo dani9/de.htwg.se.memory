@@ -1,31 +1,47 @@
 package de.htwg.se.memory.controller;
 
 import de.htwg.se.memory.model.player.*;
-import de.htwg.se.memory.model.playingField.Field;
-import de.htwg.se.memory.model.playingField.PlayingField;
+import de.htwg.se.memory.model.playingfield.Field;
+import de.htwg.se.memory.model.playingfield.PlayingField;
 import de.htwg.se.memory.util.observer.IObserver.Topic;
 import de.htwg.se.memory.util.observer.Observable;
 
-class Choice {
-	static int row, column;
-}
+
 
 public class Controller extends Observable {
 
+	private static class Choice {
+		static int row, column;
+		private Choice(){
+			
+		}
+	}
+	private static final class InstanceHolder {
+		static final Controller CONTROLLER = new Controller();
+		private InstanceHolder(){
+			
+		}
+	}
+	
+	
 	PlayingField playingField = null;
 
-	Player players[] = new Player[2];
+	Player[] players = new Player[2];
 
 	int activePlayer = 0;
 	int turn = 0;
 
-	public Controller() {
+	private Controller() {
 
+	}
+	
+	public static Controller getInstance(){
+		return InstanceHolder.CONTROLLER;
 	}
 
 	public void startGame(int fieldSize, String player1Name, String player2Name) {
-		Player player1 = new User(player1Name, player1Name, this);
-		Player player2 = new User(player2Name, player2Name, this);
+		Player player1 = new User(player1Name, player1Name);
+		Player player2 = new User(player2Name, player2Name);
 		startGame(fieldSize, player1, player2);
 	}
 
@@ -40,12 +56,6 @@ public class Controller extends Observable {
 
 		notifyObservers(Topic.NEW_GAME_STARTED);
 
-		// try {
-		// Thread.sleep(1000);
-		// } catch (InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
 		getChoice();
 	}
 
@@ -77,12 +87,6 @@ public class Controller extends Observable {
 		playingField.hideAll();
 		notifyObservers(Topic.NEXT_PLAYER);
 
-		// try {
-		// Thread.sleep(1000);
-		// } catch (InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
 		getChoice();
 	}
 
@@ -92,7 +96,7 @@ public class Controller extends Observable {
 	}
 
 	public void getChoice() {
-		players[activePlayer].getChoice();
+		waitForChoice();
 	}
 
 	public int getTurn() {
@@ -100,8 +104,7 @@ public class Controller extends Observable {
 	}
 
 	public Field getField(int row, int column) {
-		Field field = playingField.getField(row, column);
-		return field;
+		return playingField.getField(row, column);
 	}
 
 	public PlayingField getPlayingField() {
@@ -121,20 +124,18 @@ public class Controller extends Observable {
 		}
 		field.setVisble();
 
-		if (turn == 1) {
-			if (field.compareTo(getField(Choice.row, Choice.column)) == 0) {
-				field.setGuessed(true);
-				getField(Choice.row, Choice.column).setGuessed(true);
-				players[activePlayer].addPoint();
+		if (turn == 1 && field.compareTo(getField(Choice.row, Choice.column)) == 0) {
+			field.setGuessed(true);
+			getField(Choice.row, Choice.column).setGuessed(true);
+			players[activePlayer].addPoint();
 
-				if (playingField.isAllGeuessed() == true) {
-					notifyObservers(Topic.GAME_FINISHED);
-					return;
-				} else {
-					turn = 0;
-					notifyObservers(Topic.WAIT_FOR_CHOICE);
-					return;
-				}
+			if (playingField.isAllGeuessed()) {
+				notifyObservers(Topic.GAME_FINISHED);
+				return;
+			} else {
+				turn = 0;
+				notifyObservers(Topic.WAIT_FOR_CHOICE);
+				return;
 			}
 		}
 

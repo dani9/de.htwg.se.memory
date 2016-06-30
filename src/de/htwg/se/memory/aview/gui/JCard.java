@@ -1,7 +1,7 @@
 package de.htwg.se.memory.aview.gui;
 import javax.swing.JButton;
 
-import de.htwg.se.memory.model.playingField.Field;
+import de.htwg.se.memory.model.playingfield.Field;
 
 public class JCard extends JButton {
 	

@@ -1,7 +1,6 @@
 package de.htwg.se.memory.model.player;
 import java.io.Serializable;
 
-import de.htwg.se.memory.controller.Controller;
 
 public class User implements Serializable, Player{
 	
@@ -10,12 +9,9 @@ public class User implements Serializable, Player{
 	private String name;
 	private String nickname;
 	private int points;
-	private Controller controller;
-
-	public User(String name, String nickname, Controller controller) {
+	public User(String name, String nickname) {
 		this.name = name;
 		this.nickname = nickname;
-		this.controller = controller;
 	}
 
 	@Override
@@ -36,11 +32,6 @@ public class User implements Serializable, Player{
 		this.points = points;
 	}
 
-	@Override
-	public void getChoice() {
-		controller.waitForChoice();
-		
-	}
 	
 	@Override
 	public void addPoint() {

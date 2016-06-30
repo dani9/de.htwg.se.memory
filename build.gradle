@@ -48,7 +48,8 @@ sourceSets {
 jar {
     manifest.attributes "Main-Class":"de.htwg.se.memory.Memory"
 }
-  
+ 
+
 sonarqube {
     properties {
     property "sonar.projectName", "SE2014SS-04-Memory"
