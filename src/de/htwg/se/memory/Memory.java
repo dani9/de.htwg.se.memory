@@ -13,12 +13,11 @@ final class Memory {
 	public static void main(String[] args) {
 		
 		PropertyConfigurator.configure("log4j.properties");
-		Controller controller = Controller.getInstance();
-		Tui tui = new Tui(controller);
-		Gui gui = new Gui(controller);
-		controller.addObserver(tui);
-		controller.addObserver(gui);
-		controller.notifyObservers(Topic.GAME_INIT);
+		
+		new Tui();
+		new Gui();
+
+		Controller.getInstance().notifyObservers(Topic.GAME_INIT);
 	}
 
 }
