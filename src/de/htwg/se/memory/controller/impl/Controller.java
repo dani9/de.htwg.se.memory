@@ -1,14 +1,16 @@
-package de.htwg.se.memory.controller;
+package de.htwg.se.memory.controller.impl;
 
+import de.htwg.se.memory.controller.IController;
 import de.htwg.se.memory.model.player.*;
-import de.htwg.se.memory.model.playingfield.Field;
-import de.htwg.se.memory.model.playingfield.PlayingField;
+import de.htwg.se.memory.model.playingfield.IField;
+import de.htwg.se.memory.model.playingfield.IPlayingField;
+import de.htwg.se.memory.model.playingfield.impl.PlayingField;
 import de.htwg.se.memory.util.observer.IObserver.Topic;
-import de.htwg.se.memory.util.observer.Observable;
+import de.htwg.se.memory.util.observer.impl.Observable;
 
 
 
-public class Controller extends Observable {
+public class Controller extends Observable implements IController {
 
 	private static class Choice {
 		static int row, column;
@@ -24,7 +26,7 @@ public class Controller extends Observable {
 	}
 	
 	
-	PlayingField playingField = null;
+	public IPlayingField playingField = null;
 
 	Player[] players = new Player[2];
 
@@ -39,12 +41,14 @@ public class Controller extends Observable {
 		return InstanceHolder.CONTROLLER;
 	}
 
+	@Override
 	public void startGame(int fieldSize, String player1Name, String player2Name) {
 		Player player1 = new User(player1Name, player1Name);
 		Player player2 = new User(player2Name, player2Name);
 		startGame(fieldSize, player1, player2);
 	}
 
+	@Override
 	public void startGame(int fieldSize, Player player1, Player player2) {
 
 		playingField = new PlayingField(fieldSize);
@@ -59,27 +63,33 @@ public class Controller extends Observable {
 		getChoice();
 	}
 
+	@Override
 	public String getActivePlayerName() {
 		return players[activePlayer].getName();
 	}
 
+	@Override
 	public int getActivePlayerPoints() {
 		return players[activePlayer].getPoints();
 	}
 
+	@Override
 	public String getPlayerName(int playerNumber) {
 		return players[playerNumber - 1].getName();
 	}
 
+	@Override
 	public int getPlayerPoints(int playerNumber) {
 		return players[playerNumber - 1].getPoints();
 	}
 
+	@Override
 	public Player[] getPlayers() {
 
 		return players;
 	}
 
+	@Override
 	public void nextPlayer() {
 		turn = 0;
 		++activePlayer;
@@ -90,34 +100,41 @@ public class Controller extends Observable {
 		getChoice();
 	}
 
+	@Override
 	public int getPlayFieldSize() {
 
 		return playingField.getColumn();
 	}
 
+	@Override
 	public void getChoice() {
 		waitForChoice();
 	}
 
+	@Override
 	public int getTurn() {
 		return turn;
 	}
 
-	public Field getField(int row, int column) {
+	@Override
+	public IField getField(int row, int column) {
 		return playingField.getField(row, column);
 	}
 
-	public PlayingField getPlayingField() {
+	@Override
+	public IPlayingField getPlayingField() {
 		return playingField;
 	}
 
+	@Override
 	public void waitForChoice() {
 		notifyObservers(Topic.WAIT_FOR_CHOICE);
 	}
 
+	@Override
 	public void setChoice(int row, int column) {
 
-		Field field = getField(row, column);
+		IField field = getField(row, column);
 		if (field.isVisible() || field.isGuessed()) {
 			notifyObservers(Topic.WAIT_FOR_CHOICE);
 			return;

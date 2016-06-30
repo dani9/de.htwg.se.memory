@@ -15,15 +15,16 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
-import de.htwg.se.memory.controller.Controller;
+
+import de.htwg.se.memory.controller.IController;
 
 public class GameStartPanel extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 4375644209073794290L;
-	private Controller controller;
+	private IController controller;
 	private JTextField player0, player1;
 
-	public GameStartPanel(Controller controller) {
+	public GameStartPanel(IController controller) {
 		Border space = BorderFactory.createEmptyBorder(50, 50, 50, 50);
 		this.setBackground(Color.white);
 		this.controller = controller;

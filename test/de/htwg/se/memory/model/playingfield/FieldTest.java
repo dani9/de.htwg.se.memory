@@ -7,7 +7,7 @@ import org.apache.log4j.PropertyConfigurator;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.se.memory.model.playingfield.Field;
+import de.htwg.se.memory.model.playingfield.impl.Field;
 import junit.framework.TestCase;
 
 public class FieldTest extends TestCase{

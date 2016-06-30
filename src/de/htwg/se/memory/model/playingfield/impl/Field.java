@@ -1,10 +1,12 @@
-package de.htwg.se.memory.model.playingfield;
+package de.htwg.se.memory.model.playingfield.impl;
 
 import java.util.Random;
 
 import org.apache.log4j.Logger;
 
-public class Field implements Comparable<Field>{
+import de.htwg.se.memory.model.playingfield.IField;
+
+public class Field implements Comparable<IField>, IField{
 	private static String hiddenText = "$$";
 	private String fieldId;
 	private String pathToPicture;
@@ -23,39 +25,48 @@ public class Field implements Comparable<Field>{
 	}
 
 	
+	@Override
 	public boolean isGuessed() {
 		return isGuessed;
 	}
 
+	@Override
 	public void setGuessed(boolean isGuessed) {
 		this.isGuessed = isGuessed;
 	}
 
 	
+	@Override
 	public void setFieldId(String fieldId) {
 		this.fieldId = fieldId;
 	}
 	
+	@Override
 	public String getFieldId() {
 		return fieldId;
 	}
 	
+	@Override
 	public String getPathToPicture(){
 		return pathToPicture;
 	}
 	
+	@Override
 	public void setPathToPicture(String pathToPicture){
 		this.pathToPicture=pathToPicture;
 	}
 	
+	@Override
 	public void setVisble(){
 		isVisible = true;
 	}
 	
+	@Override
 	public void setHidden(){
 		isVisible = false;
 	}
 	
+	@Override
 	public boolean isVisible() {
 		return isVisible;
 	}
@@ -76,8 +87,8 @@ public class Field implements Comparable<Field>{
 	}
 
 	@Override
-	public int compareTo(Field o) {
-		return fieldId.compareTo(o.fieldId);
+	public int compareTo(IField o) {
+		return fieldId.compareTo(o.getFieldId());
 
 	}
 

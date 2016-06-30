@@ -1,7 +1,9 @@
 package de.htwg.se.memory.aview.tui;
 
 import java.util.Scanner;
-import de.htwg.se.memory.controller.Controller;
+
+import de.htwg.se.memory.controller.IController;
+import de.htwg.se.memory.controller.impl.Controller;
 import de.htwg.se.memory.util.observer.IObserver;
 
 import org.apache.log4j.Logger;
@@ -9,7 +11,7 @@ public class Tui extends Thread implements IObserver {
 
 	private static final Logger LOGGER = Logger.getLogger(Tui.class);
 	
-	private Controller controller;
+	private IController controller;
 	
 	private Topic state;
 	public Tui() {

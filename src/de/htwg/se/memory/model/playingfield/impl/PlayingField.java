@@ -1,10 +1,13 @@
-package de.htwg.se.memory.model.playingfield;
+package de.htwg.se.memory.model.playingfield.impl;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class PlayingField {
-	private Field[][] matrix;
+import de.htwg.se.memory.model.playingfield.IField;
+import de.htwg.se.memory.model.playingfield.IPlayingField;
+
+public class PlayingField implements IPlayingField {
+	private IField[][] matrix;
 	
 	public PlayingField(int column){
 		if(column % 2 == 0){
@@ -21,11 +24,11 @@ public class PlayingField {
 
 		
 	private void fillMatrix(){
-		List<Field> list=new LinkedList<Field>();
+		List<IField> list=new LinkedList<IField>();
 			
 		for (int i = 0; i < ((getColumn()*getColumn())/2); i++) {
-			Field tmp= new Field(Integer.toString(i));
-			Field tmp2= new Field(Integer.toString(i));
+			IField tmp= new Field(Integer.toString(i));
+			IField tmp2= new Field(Integer.toString(i));
 			list.add(tmp);
 			list.add(tmp2);
 		}
@@ -39,13 +42,15 @@ public class PlayingField {
 		  }
 	}
 	
-	public final Field getField(int row,int column) {
+	@Override
+	public final IField getField(int row,int column) {
 		return matrix[row][column];
 	}
 	
+	@Override
 	public final void mix(){
 				  int randX , randY;
-				  Field tmp;
+				  IField tmp;
 				  for(int x =0; x < getColumn(); ++x){
 					  for(int y =0; y < getColumn(); ++y){
 				  
@@ -58,11 +63,12 @@ public class PlayingField {
 				  }
 		}
 
+	@Override
 	public final int getColumn(){
 		return matrix.length;
 	}
 	
-	 @Override
+	@Override
 	public final String toString() {
 		StringBuilder matrixString = new StringBuilder();
 		  for(int x =0; x < getColumn(); ++x){
@@ -78,7 +84,8 @@ public class PlayingField {
 		  return matrixString.toString();
 	 	}
 	 
-	 public void hideAll(){
+	 @Override
+	public void hideAll(){
 		 for(int x =0; x < getColumn(); ++x){
 			  for(int y =0; y < getColumn(); ++y){
 		  
@@ -88,7 +95,8 @@ public class PlayingField {
 	 
 	 }
 	 
-	 public boolean isAllGeuessed(){		 
+	 @Override
+	public boolean isAllGeuessed(){		 
 		 for(int x =0; x < getColumn(); ++x){
 			  for(int y =0; y < getColumn(); ++y){
 				  

@@ -2,7 +2,7 @@ package de.htwg.se.memory;
 
 import de.htwg.se.memory.aview.gui.Gui;
 import de.htwg.se.memory.aview.tui.Tui;
-import de.htwg.se.memory.controller.Controller;
+import de.htwg.se.memory.controller.impl.Controller;
 import de.htwg.se.memory.util.observer.IObserver.Topic;
 
 import org.apache.log4j.Logger;

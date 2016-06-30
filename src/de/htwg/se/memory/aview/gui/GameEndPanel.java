@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import de.htwg.se.memory.controller.Controller;
+import de.htwg.se.memory.controller.IController;
 import de.htwg.se.memory.model.player.Player;
 
 public class GameEndPanel extends JPanel {
@@ -19,7 +19,7 @@ public class GameEndPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -6862456149947254053L;
 
-	public GameEndPanel(Controller controller) {
+	public GameEndPanel(IController controller) {
 
 		Border space = BorderFactory.createEmptyBorder(50,50,50,50);
 		this.setBackground(Color.white);

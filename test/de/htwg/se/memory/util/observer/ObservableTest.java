@@ -7,8 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.htwg.se.memory.util.observer.IObserver;
-import de.htwg.se.memory.util.observer.Observable;
 import de.htwg.se.memory.util.observer.IObserver.Topic;
+import de.htwg.se.memory.util.observer.impl.Observable;
 
 public class ObservableTest {
 
@@ -17,7 +17,7 @@ public class ObservableTest {
 	
 		private boolean ping=false;
 		private TestObserver testObserver;
-		private Observable testObservable;
+		private IObservable testObservable;
 		
 		class TestObserver implements IObserver {
 

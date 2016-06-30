@@ -13,7 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
-import de.htwg.se.memory.controller.Controller;
+import de.htwg.se.memory.controller.IController;
+import de.htwg.se.memory.controller.impl.Controller;
 import de.htwg.se.memory.model.player.Player;
 import de.htwg.se.memory.util.observer.IObserver;
 
@@ -26,7 +27,7 @@ public class Gui extends JFrame implements IObserver {
 	private CardLayout mainPanel;
 	private JPanel mainCardPanel;
 	private int turn;
-	private Controller controller;
+	private IController controller;
 	private MenuBar menuBar;
 	private JLabel statusLabel;
 

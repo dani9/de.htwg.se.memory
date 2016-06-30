@@ -5,9 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.se.memory.controller.impl.Controller;
 import de.htwg.se.memory.model.player.Player;
-import de.htwg.se.memory.model.playingfield.Field;
-import de.htwg.se.memory.model.playingfield.PlayingField;
+import de.htwg.se.memory.model.playingfield.IField;
+import de.htwg.se.memory.model.playingfield.IPlayingField;
+import de.htwg.se.memory.model.playingfield.impl.PlayingField;
 import de.htwg.se.memory.util.observer.IObserver;
 
 public class ControllerTest implements IObserver {
@@ -65,20 +67,20 @@ public class ControllerTest implements IObserver {
 	
 	@Test
 	public void getFieldTest(){
-		Field field = controller.getField(0, 0);
+		IField field = controller.getField(0, 0);
 		assertFalse(field.isGuessed());
 	}
 	
 	@Test
 	public void getPlayingFieldTest(){
-		PlayingField playingfield = controller.getPlayingField();
+		IPlayingField playingfield = controller.getPlayingField();
 		assertEquals(playingfield.getColumn(), 4);
 	}
 	
 	@Test
 	public void setChoiceTest(){
 		controller.playingField = new PlayingField(4);
-		Field field = controller.getField(0, 0);
+		IField field = controller.getField(0, 0);
 		
 		assertFalse(field.isVisible());
 		

@@ -16,8 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import de.htwg.se.memory.controller.Controller;
-import de.htwg.se.memory.model.playingfield.Field;
+import de.htwg.se.memory.controller.IController;
+import de.htwg.se.memory.model.playingfield.IField;
 import de.htwg.se.memory.util.IconContainer;
 import de.htwg.se.memory.util.observer.IObserver.Topic;
 
@@ -27,11 +27,11 @@ public class Grid extends JPanel implements ActionListener {
 
 	private Map<String, Component> cards;
 	private int size;
-	private Controller controller;
+	private IController controller;
 	private Topic topic;
 
 	// width height pictures
-	public Grid(Controller controller, Topic topic, int width, int size) {
+	public Grid(IController controller, Topic topic, int width, int size) {
 		this.topic = topic;
 		this.controller = controller;
 
@@ -72,7 +72,7 @@ public class Grid extends JPanel implements ActionListener {
 
 			int row =  i / playFieldSize;
 			int column = i % playFieldSize;
-			Field field = controller.getField(row, column);
+			IField field = controller.getField(row, column);
 			pictures[i] = new JCard(field, row, column);
 
 			pictures[i].setName("BTN" + i);

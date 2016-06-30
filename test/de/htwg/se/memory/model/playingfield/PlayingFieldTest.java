@@ -6,13 +6,12 @@ import org.apache.log4j.PropertyConfigurator;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.se.memory.model.playingfield.Field;
-import de.htwg.se.memory.model.playingfield.PlayingField;
+import de.htwg.se.memory.model.playingfield.impl.PlayingField;
 import junit.framework.TestCase;
 public class PlayingFieldTest extends TestCase{
 	
-	PlayingField layout,layout1, layout2;
-	Field field;
+	IPlayingField layout,layout1, layout2;
+	IField field;
 	@Before
 	public void setUp() throws Exception{
 		PropertyConfigurator.configure("log4j.properties");
@@ -43,7 +42,7 @@ public class PlayingFieldTest extends TestCase{
 	
 	@Test
 	public void testMix(){
-		PlayingField tmp = layout;
+		IPlayingField tmp = layout;
 		layout.mix();
 
 		assertNotSame(layout.toString(), tmp.toString());
