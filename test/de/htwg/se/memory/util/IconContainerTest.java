@@ -5,6 +5,9 @@ import static org.junit.Assert.assertTrue;
 
 import javax.swing.Icon;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,6 +15,8 @@ public class IconContainerTest {
 
 	@Before
 	public void preparation() {
+		PropertyConfigurator.configure("log4j.properties");
+		LogManager.getRootLogger().setLevel(Level.OFF);
 		new Storage().delete(IconContainer.PICTUREPATH + "icons.if");
 	}
 

@@ -15,7 +15,7 @@ public class IconContainer implements Serializable {
 	/**
 	 * 
 	 */
-	private static final Logger LOGGER = Logger.getLogger("de.htwg.se.memory.util");
+	private static final Logger LOGGER = Logger.getLogger(IconContainer.class);
 	private static final long serialVersionUID = 1427131171238925111L;
 	private static final String SEPARATOR = System.getProperty("file.separator");
 	private static final String WORKINGDIR = System.getProperty("user.dir") + SEPARATOR;

@@ -7,7 +7,7 @@ import de.htwg.se.memory.util.observer.IObserver;
 import org.apache.log4j.Logger;
 public class Tui extends Thread implements IObserver {
 
-	private static final Logger LOGGER = Logger.getLogger("de.htwg.se.memory.aview.tui");
+	private static final Logger LOGGER = Logger.getLogger(Tui.class);
 	
 	private Controller controller;
 	

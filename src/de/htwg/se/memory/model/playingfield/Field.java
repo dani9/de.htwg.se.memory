@@ -13,7 +13,7 @@ public class Field implements Comparable<Field>{
 	
 	private int hashaddition;
 	
-	private static final Logger LOGGER = Logger.getLogger("de.htwg.se.memory.model.playingfield");
+	private static final Logger LOGGER = Logger.getLogger(Field.class);
 	
 	public Field(String fieldId) {
 		this.fieldId = fieldId;
