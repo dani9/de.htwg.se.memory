@@ -12,8 +12,9 @@ public class Tui extends Thread implements IObserver {
 	private Controller controller;
 	
 	private Topic state;
-	public Tui(Controller controller) {
-		this.controller = controller;
+	public Tui() {
+		this.controller = Controller.getInstance();
+		this.controller.addObserver(this);
 		this.start();
 	}
 

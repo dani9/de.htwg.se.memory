@@ -29,9 +29,10 @@ public class Gui extends JFrame implements IObserver {
 	private Controller controller;
 	private MenuBar menuBar;
 	private JLabel statusLabel;
-	public Gui(Controller controller) {
+	public Gui() {
 
-		this.controller = controller;
+		this.controller = Controller.getInstance();
+		this.controller.addObserver(this);
 
 		this.setTitle("MEMORY");
 
