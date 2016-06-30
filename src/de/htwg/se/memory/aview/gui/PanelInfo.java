@@ -53,10 +53,9 @@ public class PanelInfo extends JPanel {
 		int pointsTwo = this.userTwo.getPoints();
 
 		String nicknameTwo = this.userTwo.getName();
-		String nicknameOne = this.userOne.getName();
-		String out = " "+nicknameOne + ": " + pointsOne + "   " + nicknameTwo + ": " + pointsTwo;
+		String nicknameOne = this.userOne.getName(); 
 
-		return out;
+		return " "+nicknameOne + ": " + pointsOne + "   " + nicknameTwo + ": " + pointsTwo;
 	}
 
 }
