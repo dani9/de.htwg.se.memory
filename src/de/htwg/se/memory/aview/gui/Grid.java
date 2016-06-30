@@ -70,7 +70,7 @@ public class Grid extends JPanel implements ActionListener {
 			panels[i].setLayout(new BorderLayout());
 			panels[i].setName("CAD" + i);
 
-			int row = (int) i / playFieldSize;
+			int row =  i / playFieldSize;
 			int column = i % playFieldSize;
 			Field field = controller.getField(row, column);
 			pictures[i] = new JCard(field, row, column);

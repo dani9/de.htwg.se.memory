@@ -29,6 +29,7 @@ public class Gui extends JFrame implements IObserver {
 	private Controller controller;
 	private MenuBar menuBar;
 	private JLabel statusLabel;
+
 	public Gui() {
 
 		this.controller = Controller.getInstance();
@@ -46,10 +47,9 @@ public class Gui extends JFrame implements IObserver {
 		mainPanel = new CardLayout();
 		mainCardPanel = new JPanel(mainPanel);
 
-
 		frontPanel.add(mainCardPanel);
 		this.setLayout(new BorderLayout());
-		
+
 		this.turn = 0;
 
 		JPanel statusPanel = new JPanel();
@@ -62,10 +62,10 @@ public class Gui extends JFrame implements IObserver {
 		statusPanel.add(statusLabel);
 
 		JPanel emptyPanel = new JPanel();
-		emptyPanel.setPreferredSize(new Dimension(500,500));
+		emptyPanel.setPreferredSize(new Dimension(500, 500));
 		mainCardPanel.add(emptyPanel, "test");
 		mainPanel.show(mainCardPanel, "test");
-		
+
 		this.add(frontPanel, BorderLayout.CENTER);
 		this.setJMenuBar(menuBar);
 		this.setResizable(false);
@@ -79,7 +79,7 @@ public class Gui extends JFrame implements IObserver {
 	public void refresh(int panelToShow) {
 
 		showPanel(panelToShow);
-		
+
 		this.revalidate();
 		this.repaint();
 
@@ -108,46 +108,35 @@ public class Gui extends JFrame implements IObserver {
 	@Override
 	public void update(Topic topic) {
 		String status = "";
-		switch (topic) {
-		
-		
-		
-		case NEW_GAME_STARTED:
-		case WAIT_FOR_CHOICE:
-		case WAIT_FOR_NEXT_PLAYER:
-			
-			mainCardPanel.add(new GameFieldPanel(controller,topic,controller.getPlayFieldSize() *2  ,920), this.turn + "");
+
+		if (topic == Topic.NEW_GAME_STARTED || topic == Topic.WAIT_FOR_CHOICE || topic == Topic.WAIT_FOR_NEXT_PLAYER)
+
+		{
+			mainCardPanel.add(new GameFieldPanel(controller, topic, controller.getPlayFieldSize() * 2, 920),
+					this.turn + "");
 			status = updateMsgFieldText();
-			break;
-		
-		
-		case GAME_FINISHED:
+
+		} else if (topic == Topic.GAME_FINISHED) {
+
 			status = gameFinishedStatusMsg();
-			
-			mainCardPanel.add(new GameStartPanel(controller), this.turn + "");
-			break;
-		
 
-		case GAME_INIT:
 			mainCardPanel.add(new GameStartPanel(controller), this.turn + "");
-			
-			break;
-		default:
-			break;
+		} else if (topic == Topic.GAME_INIT) {
 
+			mainCardPanel.add(new GameStartPanel(controller), this.turn + "");
 		}
-		
-		statusLabel.setText((status+ "                                     "+topic).trim());
-		
+
+		statusLabel.setText((status + "                                     " + topic).trim());
+
 		this.refresh(this.turn++);
+
 	}
 
 	private String updateMsgFieldText() {
 		String status;
 		Player[] players = controller.getPlayers();
-		status = players[0].getName()+": "+players[0].getPoints() +
-				" | " +players[1].getName()+ ": "+players[1].getPoints()+
-				"          "+controller.getActivePlayerName()+"'s turn." ;
+		status = players[0].getName() + ": " + players[0].getPoints() + " | " + players[1].getName() + ": "
+				+ players[1].getPoints() + "          " + controller.getActivePlayerName() + "'s turn.";
 		return status;
 	}
 
@@ -155,10 +144,10 @@ public class Gui extends JFrame implements IObserver {
 		String status;
 		Player[] playerss = controller.getPlayers();
 
-		if(playerss[0].getPoints() >= playerss[1].getPoints()){
-			status = playerss[0].getName()+ " wins!";
-		}else{
-			status = playerss[1].getName()+ " wins!";
+		if (playerss[0].getPoints() >= playerss[1].getPoints()) {
+			status = playerss[0].getName() + " wins!";
+		} else {
+			status = playerss[1].getName() + " wins!";
 		}
 		return status;
 	}

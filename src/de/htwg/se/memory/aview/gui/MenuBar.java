@@ -1,5 +1,6 @@
 package de.htwg.se.memory.aview.gui;
 
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,6 +9,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.SwingUtilities;
 
 import de.htwg.se.memory.util.IconContainer;
 
@@ -21,7 +23,6 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		IconContainer icons = IconContainer.getInstance();
 
 		JMenu menuGame = new JMenu("Game");
-		
 
 		JMenuItem itemExit = new JMenuItem("exit", icons.getIcon("PIC" + IconContainer.EXIT));
 		itemExit.setName("exit");
@@ -61,12 +62,9 @@ public class MenuBar extends JMenuBar implements ActionListener {
 
 		String compName = comp.getName();
 		if ("exit".equals(compName)) {
-			System.exit(0);
 
-		} else if ("start".equals(compName)) {
-
-			// TODO
-			
+			Window window = SwingUtilities.getWindowAncestor(this);
+			window.setVisible(false);
 
 		} else if (comp instanceof JRadioButtonMenuItem) {
 			toggelRadioBoxEvent(comp);
@@ -84,16 +82,16 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		}
 
 	}
-	
-	public int getRadioSelectedValue(){
-		
+
+	public int getRadioSelectedValue() {
+
 		for (JRadioButtonMenuItem jRadioButtonMenuItem : jRadioButtonMenuItems) {
-			if(jRadioButtonMenuItem.isSelected()){
-				return Integer.parseInt( jRadioButtonMenuItem.getName());
-				
+			if (jRadioButtonMenuItem.isSelected()) {
+				return Integer.parseInt(jRadioButtonMenuItem.getName());
+
 			}
 		}
-		
+
 		return 4;
 	}
 
