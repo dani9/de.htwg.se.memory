@@ -11,10 +11,8 @@ public class StorageTest {
 
 	@Before
 	public void preparation() {
-		try {
-			store = new Storage();
-		} catch (Exception e) {
-		}
+
+		store = new Storage();
 
 	}
 
