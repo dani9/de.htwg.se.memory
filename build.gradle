@@ -57,6 +57,6 @@ sonarqube {
     property "sonar.projectVersion", "1.0"
     property "sonar.binaries", "build/classes"
     property "sonar.java.coveragePlugin", "jacoco"
-    property "sonar.coverage.exclusions", "**de/htwg/memory/aview/**"
+    property "sonar.coverage.exclusions", "**/de/htwg/se/memory/aview/**"
   }
 }
