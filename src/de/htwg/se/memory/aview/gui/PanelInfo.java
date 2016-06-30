@@ -31,10 +31,10 @@ public class PanelInfo extends JPanel {
 		this.setName("PanelInfo");
 
 	}
-	public void setUsers(Player user_0, Player user_1){
+	public void setUsers(Player userOne, Player userTwo){
 		
-		this.userOne = user_0;
-		this.userTwo = user_1;
+		this.userOne = userOne;
+		this.userTwo = userTwo;
 		
 	}
 	
@@ -48,13 +48,13 @@ public class PanelInfo extends JPanel {
 		if (this.userOne == null || this.userTwo == null){
 			return "";
 		}
-		int points_0 = this.userOne.getPoints();
+		int pointsOne = this.userOne.getPoints();
 
-		int points_1 = this.userTwo.getPoints();
+		int pointsTwo = this.userTwo.getPoints();
 
-		String nickname_1 = this.userTwo.getName();
-		String nickname_0 = this.userOne.getName();
-		String out = " "+nickname_0 + ": " + points_0 + "   " + nickname_1 + ": " + points_1;
+		String nicknameTwo = this.userTwo.getName();
+		String nicknameOne = this.userOne.getName();
+		String out = " "+nicknameOne + ": " + pointsOne + "   " + nicknameTwo + ": " + pointsTwo;
 
 		return out;
 	}
