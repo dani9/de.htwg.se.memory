@@ -8,8 +8,6 @@ public interface IPlayingField {
 
 	int getColumn();
 
-	String toString();
-
 	void hideAll();
 
 	boolean isAllGeuessed();

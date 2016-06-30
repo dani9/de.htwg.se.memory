@@ -26,7 +26,7 @@ public class Controller extends Observable implements IController {
 	}
 	
 	
-	public IPlayingField playingField = null;
+	private IPlayingField playingField = null;
 
 	Player[] players = new Player[2];
 
@@ -35,6 +35,10 @@ public class Controller extends Observable implements IController {
 
 	private Controller() {
 
+	}
+	
+	public void setPlayingfield(IPlayingField playingField){
+		this.playingField =playingField;
 	}
 	
 	public static Controller getInstance(){

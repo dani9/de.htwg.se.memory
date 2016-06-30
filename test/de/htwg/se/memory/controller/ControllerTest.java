@@ -79,7 +79,7 @@ public class ControllerTest implements IObserver {
 	
 	@Test
 	public void setChoiceTest(){
-		controller.playingField = new PlayingField(4);
+		controller.setPlayingfield(new PlayingField(4));
 		IField field = controller.getField(0, 0);
 		
 		assertFalse(field.isVisible());
