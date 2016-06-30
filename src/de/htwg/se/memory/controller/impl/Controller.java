@@ -28,7 +28,7 @@ public class Controller extends Observable implements IController {
 		}
 	}
 	
-	private final static Injector INJECTOR = Guice.createInjector();
+	private static final Injector INJECTOR = Guice.createInjector();
 	private IPlayingField playingField = null;
 
 	IPlayer[] players = new IPlayer[2];
