@@ -12,7 +12,7 @@ public class IconContainerTest {
 
 	@Before
 	public void preparation() {
-
+		new Storage().delete(IconContainer.PICTUREPATH + "icons.if");
 	}
 
 	// de.kaba.qa.util
@@ -25,11 +25,17 @@ public class IconContainerTest {
 		assertNotNull(container);
 
 		assertTrue(container.getIcon("PIC"+IconContainer.ADD) instanceof Icon);
-		assertTrue(container.getIcon("PIC"+IconContainer.ADD, 20,20) instanceof Icon);
+		
+		
+		
+		IconContainer container_load = IconContainer.getInstance();
+		
+		
+		assertTrue(container_load.getIcon("PIC"+IconContainer.ADD, 20,20) instanceof Icon);
 		
 		for (int i = 0; i < IconContainer.ADDITIONALICONS; i++) {
 			
-			assertTrue(container.getIcon("PIC"+i) instanceof Icon);
+			assertTrue(container_load.getIcon("PIC"+i) instanceof Icon);
 			
 		}
 		
