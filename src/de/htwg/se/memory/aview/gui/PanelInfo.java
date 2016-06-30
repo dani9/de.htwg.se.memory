@@ -7,13 +7,13 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import de.htwg.se.memory.model.player.Player;
+import de.htwg.se.memory.model.player.IPlayer;
 
 public class PanelInfo extends JPanel {
 
 	private static final long serialVersionUID = -6662534236167851124L;
 
-	private Player userOne, userTwo;
+	private IPlayer userOne, userTwo;
 	private JLabel info = new JLabel();
 
 	public PanelInfo() {
@@ -31,7 +31,7 @@ public class PanelInfo extends JPanel {
 		this.setName("PanelInfo");
 
 	}
-	public void setUsers(Player userOne, Player userTwo){
+	public void setUsers(IPlayer userOne, IPlayer userTwo){
 		
 		this.userOne = userOne;
 		this.userTwo = userTwo;

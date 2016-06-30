@@ -15,7 +15,7 @@ import javax.swing.border.BevelBorder;
 
 import de.htwg.se.memory.controller.IController;
 import de.htwg.se.memory.controller.impl.Controller;
-import de.htwg.se.memory.model.player.Player;
+import de.htwg.se.memory.model.player.IPlayer;
 import de.htwg.se.memory.util.observer.IObserver;
 
 public class Gui extends JFrame implements IObserver {
@@ -115,7 +115,11 @@ public class Gui extends JFrame implements IObserver {
 		{
 			mainCardPanel.add(new GameFieldPanel(controller, topic, controller.getPlayFieldSize() * 2, 920),
 					this.turn + "");
-			status = updateMsgFieldText();
+			if(topic == Topic.WAIT_FOR_NEXT_PLAYER){
+				status = updateMsgFieldText(true);
+			}else{
+				status = updateMsgFieldText(false);
+			}
 
 		} else if (topic == Topic.GAME_FINISHED) {
 
@@ -133,17 +137,23 @@ public class Gui extends JFrame implements IObserver {
 
 	}
 
-	private String updateMsgFieldText() {
+	private String updateMsgFieldText(boolean next) {
 		String status;
-		Player[] players = controller.getPlayers();
+		IPlayer[] players = controller.getPlayers();
 		status = players[0].getName() + ": " + players[0].getPoints() + " | " + players[1].getName() + ": "
-				+ players[1].getPoints() + "          " + controller.getActivePlayerName() + "'s turn.";
+				+ players[1].getPoints() + "          ";
+		if(!next){
+			status += controller.getActivePlayerName();
+		}else{
+			status += controller.getInactivePlayerName();
+		}
+		status += "'s turn.";
 		return status;
 	}
 
 	private String gameFinishedStatusMsg() {
 		String status;
-		Player[] playerss = controller.getPlayers();
+		IPlayer[] playerss = controller.getPlayers();
 
 		if (playerss[0].getPoints() >= playerss[1].getPoints()) {
 			status = playerss[0].getName() + " wins!";

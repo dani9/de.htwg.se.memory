@@ -5,15 +5,19 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.se.memory.model.player.impl.User;
+
 public class UserTest {
 
-	Player player1;
+	IPlayer player1;
 	User player2;
 
 	@Before
 	public void setUp() {
-		player1 = new User("Test", "abc");
-		player2 = new User("Test1", "abc1");
+		player1 = new User();
+		player1.setName("Test");
+		player2 = new User();
+		player2.setName("test2");
 	}
 
 	@Test
@@ -31,10 +35,7 @@ public class UserTest {
 
 	}
 	
-	@Test 
-	public void testGetNickname(){
-		assertEquals(player2.getNickname(), "abc1");
-	}
+
 	
 	@Test
 	public void testSetPoints(){

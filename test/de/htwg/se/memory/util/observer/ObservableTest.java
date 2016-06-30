@@ -16,7 +16,7 @@ public class ObservableTest {
 	
 	
 		private boolean ping=false;
-		private TestObserver testObserver;
+		private IObserver testObserver;
 		private IObservable testObservable;
 		
 		class TestObserver implements IObserver {
@@ -49,6 +49,13 @@ public class ObservableTest {
 			testObservable.removeObserver(testObserver);
 			testObservable.notifyObservers(Topic.GAME_FINISHED);
 			assertFalse(ping);
+		}
+		
+		@Test
+		public void testUpdate() {
+			assertFalse(ping);
+			testObserver.update(Topic.NEW_GAME_STARTED);
+			assertTrue(ping);
 		}
 		
 		@Test

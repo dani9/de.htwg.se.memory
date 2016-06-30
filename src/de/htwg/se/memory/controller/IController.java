@@ -1,6 +1,6 @@
 package de.htwg.se.memory.controller;
 
-import de.htwg.se.memory.model.player.Player;
+import de.htwg.se.memory.model.player.IPlayer;
 import de.htwg.se.memory.model.playingfield.IField;
 import de.htwg.se.memory.model.playingfield.IPlayingField;
 import de.htwg.se.memory.util.observer.IObservable;
@@ -9,7 +9,7 @@ public interface IController extends IObservable {
 
 	void startGame(int fieldSize, String player1Name, String player2Name);
 
-	void startGame(int fieldSize, Player player1, Player player2);
+	void startGame(int fieldSize, IPlayer player1, IPlayer player2);
 
 	String getActivePlayerName();
 
@@ -19,7 +19,7 @@ public interface IController extends IObservable {
 
 	int getPlayerPoints(int playerNumber);
 
-	Player[] getPlayers();
+	IPlayer[] getPlayers();
 
 	void nextPlayer();
 
@@ -36,5 +36,7 @@ public interface IController extends IObservable {
 	void waitForChoice();
 
 	void setChoice(int row, int column);
+
+	String getInactivePlayerName();
 
 }

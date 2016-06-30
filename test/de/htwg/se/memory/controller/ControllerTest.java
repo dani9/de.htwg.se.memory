@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.htwg.se.memory.controller.impl.Controller;
-import de.htwg.se.memory.model.player.Player;
+import de.htwg.se.memory.model.player.IPlayer;
 import de.htwg.se.memory.model.playingfield.IField;
 import de.htwg.se.memory.model.playingfield.IPlayingField;
 import de.htwg.se.memory.model.playingfield.impl.PlayingField;
@@ -28,6 +28,7 @@ public class ControllerTest implements IObserver {
 		assertEquals(controller.getActivePlayerName(), "player1Name");
 		controller.nextPlayer();
 		assertEquals(controller.getActivePlayerName(), "player2Name");
+		assertEquals(controller.getInactivePlayerName(), "player1Name");
 	}
 
 	@Test
@@ -54,7 +55,7 @@ public class ControllerTest implements IObserver {
 
 	@Test
 	public void getPlayersTest() {
-		Player[] player = controller.getPlayers();
+		IPlayer[] player = controller.getPlayers();
 		assertEquals(player[0].getPoints(), 0);
 		assertEquals(player[1].getPoints(), 0);
 

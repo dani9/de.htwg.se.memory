@@ -1,5 +1,8 @@
 package de.htwg.se.memory.controller.impl;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 import de.htwg.se.memory.controller.IController;
 import de.htwg.se.memory.model.player.*;
 import de.htwg.se.memory.model.playingfield.IField;
@@ -25,10 +28,10 @@ public class Controller extends Observable implements IController {
 		}
 	}
 	
-	
+	private final static Injector INJECTOR = Guice.createInjector();
 	private IPlayingField playingField = null;
 
-	Player[] players = new Player[2];
+	IPlayer[] players = new IPlayer[2];
 
 	int activePlayer = 0;
 	int turn = 0;
@@ -47,13 +50,15 @@ public class Controller extends Observable implements IController {
 
 	@Override
 	public void startGame(int fieldSize, String player1Name, String player2Name) {
-		Player player1 = new User(player1Name, player1Name);
-		Player player2 = new User(player2Name, player2Name);
+		IPlayer player1 = INJECTOR.getInstance(IPlayer.class);
+		player1.setName(player1Name);
+		IPlayer player2 = INJECTOR.getInstance(IPlayer.class);
+		player2.setName(player2Name);
 		startGame(fieldSize, player1, player2);
 	}
 
 	@Override
-	public void startGame(int fieldSize, Player player1, Player player2) {
+	public void startGame(int fieldSize, IPlayer player1, IPlayer player2) {
 
 		playingField = new PlayingField(fieldSize);
 		playingField.mix();
@@ -70,6 +75,11 @@ public class Controller extends Observable implements IController {
 	@Override
 	public String getActivePlayerName() {
 		return players[activePlayer].getName();
+	}
+	
+	@Override
+	public String getInactivePlayerName() {
+		return players[(activePlayer+1)%2].getName();
 	}
 
 	@Override
@@ -88,7 +98,7 @@ public class Controller extends Observable implements IController {
 	}
 
 	@Override
-	public Player[] getPlayers() {
+	public IPlayer[] getPlayers() {
 
 		return players;
 	}

@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import de.htwg.se.memory.controller.IController;
-import de.htwg.se.memory.model.player.Player;
+import de.htwg.se.memory.model.player.IPlayer;
 
 public class GameEndPanel extends JPanel {
 	
@@ -26,7 +26,7 @@ public class GameEndPanel extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.setBorder(space);
 		
-		Player[] players = controller.getPlayers();
+		IPlayer[] players = controller.getPlayers();
 		String out = "";
 		if(players[0].getPoints() >= players[1].getPoints()){
 			out = players[0].getName()+ " wins!";

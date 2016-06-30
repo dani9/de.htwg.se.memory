@@ -1,26 +1,24 @@
-package de.htwg.se.memory.model.player;
+package de.htwg.se.memory.model.player.impl;
 import java.io.Serializable;
 
+import de.htwg.se.memory.model.player.IPlayer;
 
-public class User implements Serializable, Player{
+
+public class User implements Serializable, IPlayer{
 	
 	private static final long serialVersionUID = 7556473399662776644L;
 	
-	private String name;
-	private String nickname;
-	private int points;
-	public User(String name, String nickname) {
-		this.name = name;
-		this.nickname = nickname;
+	private String name = "";
+	private int points = 0;
+	
+	public User() {
+	
 	}
+	
 
 	@Override
 	public String getName() {
 		return name;
-	}
-
-	public String getNickname() {
-		return nickname;
 	}
 
 	@Override
@@ -36,6 +34,12 @@ public class User implements Serializable, Player{
 	@Override
 	public void addPoint() {
 		++points;
+		
+	}
+
+	@Override
+	public void setName(String playerName) {
+		this.name = playerName;
 		
 	}
 
