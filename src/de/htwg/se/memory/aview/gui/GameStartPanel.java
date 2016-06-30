@@ -24,7 +24,7 @@ public class GameStartPanel extends JPanel implements ActionListener {
 	private JTextField player0, player1;
 
 	public GameStartPanel(Controller controller) {
-		Border space = BorderFactory.createEmptyBorder(50,50,50,50);
+		Border space = BorderFactory.createEmptyBorder(50, 50, 50, 50);
 		this.setBackground(Color.white);
 		this.controller = controller;
 		this.setName("GameStartPanel");
@@ -33,7 +33,7 @@ public class GameStartPanel extends JPanel implements ActionListener {
 
 		player0.setPreferredSize(new Dimension(100, 20));
 		player1.setPreferredSize(new Dimension(100, 20));
-	
+
 		JLabel label = new JLabel("                Enter Names:");
 
 		JButton btnStart = new JButton("Start");
@@ -58,8 +58,6 @@ public class GameStartPanel extends JPanel implements ActionListener {
 		centerPanel.add(btnStart);
 
 		centerPanel.setBackground(Color.white);
-		//Border raisedetched = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
-		//centerPanel.setBorder(raisedetched);
 
 		this.add(centerPanel, BorderLayout.CENTER);
 		this.setBorder(space);
@@ -68,14 +66,10 @@ public class GameStartPanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() instanceof JButton) {
+		if (e.getSource() instanceof JButton && "start".equals(((JButton) e.getSource()).getName())) {
 
-			if ("start".equals(((JButton) e.getSource()).getName())) {
-
-				int fieldSize = getFieldSizeFromGuiObject(getGuiObject());
-				controller.startGame(fieldSize, player0.getText(), player1.getText());
-
-			}
+			int fieldSize = getFieldSizeFromGuiObject(getGuiObject());
+			controller.startGame(fieldSize, player0.getText(), player1.getText());
 
 		}
 	}

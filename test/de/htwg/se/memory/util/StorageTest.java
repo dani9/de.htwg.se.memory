@@ -26,6 +26,8 @@ public class StorageTest {
 		
 		
 		String tmp = (String) store.loadSerializable("TestSave0", "default");
+		
+		store.delete("TestSave0");
 
 		assertEquals(test, tmp);
 	}

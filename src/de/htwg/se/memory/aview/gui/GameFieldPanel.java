@@ -16,8 +16,7 @@ public class GameFieldPanel extends JPanel{
 	
 	public GameFieldPanel(Controller controller,Topic topic, int cardCount, int preferredSize) {
 		
-		//int size = 5* preferredSize / cardCount ;
-		grid = new Grid(controller, topic , cardCount, cardCount,preferredSize);
+		grid = new Grid(controller, topic , cardCount,preferredSize);
 		
 		this.add(grid);
 		

@@ -31,12 +31,12 @@ public class Grid extends JPanel implements ActionListener {
 	private Topic topic;
 
 	// width height pictures
-	public Grid(Controller controller, Topic topic, int width, int height, int size) {
+	public Grid(Controller controller, Topic topic, int width, int size) {
 		this.topic = topic;
 		this.controller = controller;
-	
-		this.size = size/width-15;
-		
+
+		this.size = size / width - 15;
+
 		this.cards = new HashMap<String, Component>();
 		int playFieldSize = controller.getPlayFieldSize();
 		Border border = BorderFactory.createEmptyBorder(10, 10, 10, 10);
@@ -69,7 +69,7 @@ public class Grid extends JPanel implements ActionListener {
 			panels[i].setBorder(border);
 			panels[i].setLayout(new BorderLayout());
 			panels[i].setName("CAD" + i);
-			// TODO
+
 			int row = (int) i / playFieldSize;
 			int column = i % playFieldSize;
 			Field field = controller.getField(row, column);
@@ -82,7 +82,6 @@ public class Grid extends JPanel implements ActionListener {
 			pictures[i].setFocusPainted(false);
 			pictures[i].setContentAreaFilled(false);
 
-			// TODO
 			IconContainer icons = IconContainer.getInstance();
 			if (field.isGuessed()) {
 				pictures[i].setIcon(null);
@@ -125,7 +124,7 @@ public class Grid extends JPanel implements ActionListener {
 	 */
 	public Component getComponent(String name) {
 		if (cards.containsKey(name)) {
-			return (Component) cards.get(name);
+			return cards.get(name);
 		} else {
 			return null;
 		}
@@ -162,37 +161,26 @@ public class Grid extends JPanel implements ActionListener {
 
 		JCard source = (JCard) arg0.getSource();
 
-		if (source.getField().isGuessed()) {
+		if ( !source.getField().isGuessed() && source.getField().isVisible() && topic == Topic.WAIT_FOR_NEXT_PLAYER) {
 
-		} else if (source.getField().isVisible()) {
-			switch (topic) {
+			sendControllerNext(source);
 
-			case WAIT_FOR_NEXT_PLAYER:
-				controller.nextPlayer();
-				controller.setChoice(source.getRow(), source.getColumn());
-				break;
-			default:
-				break;
-
-			}
 		} else {
-
-			switch (topic) {
-			case WAIT_FOR_CHOICE:
+			if (topic == Topic.WAIT_FOR_CHOICE) {
 				controller.setChoice(source.getRow(), source.getColumn());
-				break;
 
-			case WAIT_FOR_NEXT_PLAYER:
-				controller.nextPlayer();
-				controller.setChoice(source.getRow(), source.getColumn());
-				break;
-			default:
-				break;
+			} else if (topic == Topic.WAIT_FOR_NEXT_PLAYER) {
+				sendControllerNext(source);
 
 			}
 
 		}
 
+	}
+
+	private void sendControllerNext(JCard source) {
+		controller.nextPlayer();
+		controller.setChoice(source.getRow(), source.getColumn());
 	}
 
 }
