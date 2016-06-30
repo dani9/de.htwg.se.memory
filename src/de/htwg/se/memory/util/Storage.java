@@ -1,6 +1,7 @@
 package de.htwg.se.memory.util;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -87,6 +88,21 @@ public class Storage {
 			LOG.trace("cant load " + filePath + " from " + entry, exc);
 			return null;
 		}
+	}
+	
+	/**
+	 * Delete a file.
+	 * 
+	 * @param filename
+	 *            to delete.
+	 * @return true if possible
+	 */
+	public boolean delete(String filename) {
+		File file = new File(filename);
+		boolean deleteFile = file.delete();
+		LOG.debug("deleteFile " + filename + " " + deleteFile);
+
+		return deleteFile;
 	}
 
 }

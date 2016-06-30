@@ -20,6 +20,11 @@ public class StorageTest {
 	public void testSaveLoadSerializable() {
 		String test = "test2";
 		assertTrue(store.saveSerializable(test, "TestSave0", "default"));
+		
+		
+		assertTrue(!store.saveSerializable(test, "", "default"));
+		
+		
 		String tmp = (String) store.loadSerializable("TestSave0", "default");
 
 		assertEquals(test, tmp);
