@@ -1,6 +1,9 @@
 package de.htwg.se.memory.model.playingfield;
 import static org.junit.Assert.assertNotEquals;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,6 +16,8 @@ public class FieldTest extends TestCase{
 	String testobject;
 	@Before
 	public void setUp(){
+		PropertyConfigurator.configure("log4j.properties");
+		LogManager.getRootLogger().setLevel(Level.OFF);
 		field = new Field("Hallo");
 		field.setPathToPicture("test/dir");
 		field1 = new Field("12");

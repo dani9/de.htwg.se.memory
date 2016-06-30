@@ -3,6 +3,9 @@ package de.htwg.se.memory.util;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +14,8 @@ public class StorageTest {
 
 	@Before
 	public void preparation() {
-
+		PropertyConfigurator.configure("log4j.properties");
+		LogManager.getRootLogger().setLevel(Level.OFF);
 		store = new Storage();
 
 	}

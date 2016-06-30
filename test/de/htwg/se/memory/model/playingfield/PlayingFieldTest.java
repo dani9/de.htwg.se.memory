@@ -1,5 +1,8 @@
 
 package de.htwg.se.memory.model.playingfield;
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,6 +15,8 @@ public class PlayingFieldTest extends TestCase{
 	Field field;
 	@Before
 	public void setUp() throws Exception{
+		PropertyConfigurator.configure("log4j.properties");
+		LogManager.getRootLogger().setLevel(Level.OFF);
 		layout = new PlayingField(8);
 		layout1 = new PlayingField(5);
 		layout2 = new PlayingField(2);
